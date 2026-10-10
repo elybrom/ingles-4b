@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Libro 4B resuelto · Quick Learning</title>
+<meta name="theme-color" content="#1d3b8f">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header id="top">
+  <button id="bIdx" class="tb" aria-label="Lecciones">☰ <span id="lesLbl">Lecciones</span></button>
+  <div id="pnum">Pág. –</div>
+  <button id="bMode" class="tb pill">✍️ Ocultar (practicar)</button>
+  <button id="bSet" class="tb" aria-label="Ajustes">⚙️</button>
+</header>
+<main id="stage">
+  <div id="page" class="page"><img id="pimg" alt="Página del libro"><div id="ov"></div></div>
+</main>
+<div id="tools">
+  <button id="bPrev" class="nav">‹ Anterior</button>
+  <button id="bListen" class="tool" hidden>▶ Escuchar página</button>
+  <button id="bCheck" class="tool" hidden>✔ Revisar</button>
+  <button id="bNext" class="nav">Siguiente ›</button>
+</div>
+<div id="toast" hidden></div>
+<aside id="drawer" hidden>
+  <div class="dhead"><b>Índice del libro 4B</b><button class="x" data-close>✕</button></div>
+  <div id="lesList"></div>
+  <div class="goto"><label>Ir a página del PDF (1–81): <input id="gotoIn" type="number" min="1" max="81" inputmode="numeric"></label><button id="gotoB">Ir</button></div>
+</aside>
+<aside id="settings" hidden>
+  <div class="dhead"><b>Ajustes de audio</b><button class="x" data-close>✕</button></div>
+  <label>Voz en inglés<select id="voiceSel"></select></label>
+  <label class="row"><input type="checkbox" id="slow"> 🐢 Modo lento</label>
+  <button id="testV" class="tool">🔊 Probar voz</button>
+  <hr>
+  <p class="small">Toca cualquier frase impresa del libro para escucharla. Toca una respuesta azul para oírla. <span class="unc">?</span> = respuesta no segura. Las respuestas con <i>ej.</i> son un ejemplo (tu respuesta puede ser otra).</p>
+  <button id="resetP" class="tool danger">Borrar mis respuestas guardadas</button>
+</aside>
+<script src="assets/app.js"></script>
+</body></html>
