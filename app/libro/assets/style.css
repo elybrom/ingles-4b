@@ -52,3 +52,48 @@ body.practice .ans{display:none}
 .ans.k-mean{color:#0d7a5f}
 .ans.k-month{color:#0d7a5f}
 .inp input{font-size:calc(2.6cqw * var(--fs,1))}
+
+/* ===== STUDY JOURNAL THEME (crema · arena · taupe · rosa suave) · las páginas y respuestas azules no cambian ===== */
+@font-face{font-family:'Lora';src:url(../../fonts/lora-500.woff2) format('woff2');font-weight:400 500;font-display:swap}
+@font-face{font-family:'Lora';src:url(../../fonts/lora-600.woff2) format('woff2');font-weight:600 700;font-display:swap}
+@font-face{font-family:'Cormorant';src:url(../../fonts/cormorant-600.woff2) format('woff2');font-weight:600;font-display:swap}
+:root{--paper:#F6EFE6;--card:#FFFAF4;--sand:#E8DFD3;--stone:#C9C2BA;--taupe:#8C8178;--taupe-d:#6F655D;--ink:#3B2F2F;--muted:#8A7E76;--line:#E6DCD1;--pink:#E9C4C8;--blush:#F3D9DC;--amber:#B5763A}
+html,body{background:#E8DFD3;color:var(--ink);font-family:'Lora',Georgia,serif}
+.sk{width:1.2em;height:1.2em;display:inline-block;vertical-align:-.24em;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+header{background:rgba(246,239,230,.97);color:var(--ink);border-bottom:1px solid var(--line);box-shadow:0 8px 20px -16px rgba(59,47,47,.35)}
+.tb{background:var(--card);color:var(--ink);border:1px solid var(--stone);border-radius:999px;font-weight:500;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+.tb.pill{background:var(--sand);border-color:var(--taupe);box-shadow:inset 0 -2px 0 var(--pink)}
+#pnum{font-family:'Cormorant',Georgia,serif;font-size:20px;font-weight:600;color:var(--ink)}
+.page{box-shadow:0 2px 4px rgba(59,47,47,.08),0 14px 30px -14px rgba(59,47,47,.35);border-radius:4px}
+#tools{background:rgba(246,239,230,.97);border-top:1px solid var(--line);box-shadow:0 -8px 20px -16px rgba(59,47,47,.35)}
+.nav{background:var(--card);color:var(--ink);border:1px solid var(--stone);border-radius:999px;font-family:inherit}
+.tool{background:var(--taupe);color:#FFFAF4;border:0;border-radius:999px;box-shadow:0 6px 16px -8px rgba(59,47,47,.55);display:inline-flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;font-weight:500}
+.tool.on{background:var(--blush);color:var(--ink);box-shadow:inset 0 0 0 1px var(--pink)}
+.danger{background:#F6E3E0;color:#A65A57;border:1px solid #D9AFAA;box-shadow:none}
+aside{background:var(--paper);border-left:1px solid var(--line);box-shadow:-12px 0 30px -18px rgba(59,47,47,.4)}
+.dhead b{font-family:'Cormorant',Georgia,serif;font-size:28px;font-weight:600}
+.x{background:var(--card);border:1px solid var(--stone);border-radius:50%;color:var(--ink);display:inline-grid;place-items:center;width:40px;height:40px;padding:0}
+#lesList button{background:transparent;border-bottom:1px solid var(--line);color:var(--ink);font-family:inherit}
+#lesList button b{background:var(--sand);color:var(--ink);border:0;border-radius:50%;font-family:'Cormorant',Georgia,serif;font-size:19px;font-weight:600;display:inline-grid;place-items:center;padding:3px 0}
+#lesList button.cur{background:var(--sand)}
+#settings select,.goto input{background:var(--card);border:1px solid var(--line);border-radius:999px;color:var(--ink);font-family:inherit}
+#toast{background:var(--ink);color:var(--paper);border-radius:999px;box-shadow:0 14px 30px -14px rgba(59,47,47,.5)}
+.inp .hint{background:var(--blush);border:1px solid var(--pink);display:inline-grid;place-items:center;color:var(--ink)}
+.inp .hint .sk{width:1.2em;height:1.2em}
+.inp .sol .sk{color:#A65A57}
+[hidden]{display:none!important}
+.tb{white-space:nowrap}#lesLbl{font-size:14px}
+header{gap:5px}
+.tb{padding:7px 9px;font-size:14px}
+#pnum{font-size:17px}
+#bSet{margin-left:0}
+#tools{gap:5px}
+.nav{padding:10px 12px;font-size:15px}
+#tools .tool{min-width:0;padding:10px 8px;font-size:14px;line-height:1.15}
+@media (max-width:480px){
+  body.practice .nav .lbl{display:none}
+  body.practice .nav{font-size:24px;padding:6px 16px;line-height:1}
+  body.practice #pnum{font-size:15px}
+  #pnum{white-space:nowrap}
+}
+@media (max-width:370px){#pnum{display:none}}

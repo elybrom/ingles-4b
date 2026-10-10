@@ -65,7 +65,7 @@ function render(){
       inp.oninput=function(){var s=answers[P.n]=answers[P.n]||{};s[i]=inp.value;save('answers',answers);w.classList.remove('ok','bad');var so=w.querySelector('.sol');if(so)so.remove()};
       inp.onkeydown=function(e){if(e.key==='Enter'){checkOne(it,w,inp,true)}};
       w.appendChild(inp);
-      var hb=document.createElement('button');hb.className='hint';hb.textContent='💡';hb.title='Ver respuesta';
+      var hb=document.createElement('button');hb.className='hint';hb.innerHTML='<svg class=sk aria-hidden=true><use href=#i-bulb></use></svg>';hb.title='Ver respuesta';
       hb.onclick=function(e){e.stopPropagation();showSol(w,it)};w.appendChild(hb);
       ov.appendChild(w);
     }
@@ -91,7 +91,7 @@ function checkOne(it,w,inp,sp){
   if(it.m){showSol(w,it);return null}
   var ok=it.alt.some(function(a){return norm(a)===v});
   w.classList.add(ok?'ok':'bad');
-  if(!ok){so=document.createElement('div');so.className='sol';so.textContent='✔ '+it.alt.join(' / ');w.appendChild(so)}
+  if(!ok){so=document.createElement('div');so.className='sol';so.innerHTML='<svg class=sk aria-hidden=true><use href=#i-check></use></svg>'+' '+esc(it.alt.join(' / '));w.appendChild(so)}
   if(sp)speak(it.say||it.a);
   return ok;
 }
@@ -99,16 +99,16 @@ function checkPage(){
   var P=BOOK[cur],ok=0,bad=0,empty=0;
   P.items.forEach(function(it,i){var w=document.querySelector('#ov .inp[data-i="'+i+'"]');if(!w)return;var r=checkOne(it,w,w.querySelector('input'),false);if(r===true)ok++;else if(r===false)bad++;else if(!it.m)empty++});
   var st=load('score',{});st[P.n]={ok:ok,bad:bad,t:Date.now()};save('score',st);
-  toast('✅ '+ok+' bien · ❌ '+bad+' por corregir'+(empty?' · '+empty+' vacías':''),3500);
+  toast(ok+' bien · '+bad+' por corregir'+(empty?' · '+empty+' vacías':''),3500);
 }
-function go(i){if(i<0||i>=BOOK.length)return;if(synth)synth.cancel();listening=false;$('#bListen').classList.remove('on');$('#bListen').textContent='▶ Escuchar página';cur=i;render();window.scrollTo(0,0)}
+function go(i){if(i<0||i>=BOOK.length)return;if(synth)synth.cancel();listening=false;$('#bListen').classList.remove('on');$('#bListen').innerHTML='<svg class=sk aria-hidden=true><use href=#i-player-play></use></svg>'+' Escuchar página';cur=i;render();window.scrollTo(0,0)}
 /* listen page */
 var listening=false;
 function listenPage(){
   var P=BOOK[cur];var b=$('#bListen');
-  if(listening){synth.cancel();listening=false;b.classList.remove('on');b.textContent='▶ Escuchar página';return}
-  var parts=P.text.match(/[^.!?]+[.!?]*["”]?/g)||[P.text];var k=0;listening=true;b.classList.add('on');b.textContent='⏹ Detener';
-  (function next(){if(!listening||k>=parts.length){listening=false;b.classList.remove('on');b.textContent='▶ Escuchar página';return}
+  if(listening){synth.cancel();listening=false;b.classList.remove('on');b.innerHTML='<svg class=sk aria-hidden=true><use href=#i-player-play></use></svg>'+' Escuchar página';return}
+  var parts=P.text.match(/[^.!?]+[.!?]*["”]?/g)||[P.text];var k=0;listening=true;b.classList.add('on');b.innerHTML='<svg class=sk aria-hidden=true><use href=#i-player-stop></use></svg>'+' Detener';
+  (function next(){if(!listening||k>=parts.length){listening=false;b.classList.remove('on');b.innerHTML='<svg class=sk aria-hidden=true><use href=#i-player-play></use></svg>'+' Escuchar página';return}
     var s=parts[k++].trim();if(!s)return next();
     var hit=null,ns=norm(s).slice(0,25);document.querySelectorAll('#ov .hs').forEach(function(h){if(!hit&&ns.length>5&&norm(h.title).indexOf(ns.slice(0,15))>=0)hit=h});
     speak(s,hit,next)})();
@@ -123,8 +123,8 @@ $('#stage').addEventListener('touchend',function(e){
 },{passive:true});
 document.addEventListener('keydown',function(e){if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
 /* ui */
-function setMode(p){practice=p;save('practice',p);document.body.classList.toggle('practice',p);$('#bMode').textContent=p?'👁 Ver respuestas':'✍️ Practicar';render()}
-$('#bMode').onclick=function(){setMode(!practice);toast(practice?'Modo práctica: escribe y toca ✔ Revisar':'Mostrando respuestas')};
+function setMode(p){practice=p;save('practice',p);document.body.classList.toggle('practice',p);$('#bMode').innerHTML=p?'<svg class=sk aria-hidden=true><use href=#i-eye></use></svg>'+' Ver respuestas':'<svg class=sk aria-hidden=true><use href=#i-pencil></use></svg>'+' Practicar';render()}
+$('#bMode').onclick=function(){setMode(!practice);toast(practice?'Modo práctica: escribe y toca Revisar':'Mostrando respuestas')};
 $('#bPrev').onclick=function(){go(cur-1)};$('#bNext').onclick=function(){go(cur+1)};
 $('#bListen').onclick=listenPage;$('#bCheck').onclick=checkPage;
 $('#bIdx').onclick=function(){$('#drawer').hidden=false};$('#bSet').onclick=function(){$('#settings').hidden=false};
@@ -136,14 +136,14 @@ $('#resetP').onclick=function(){if(confirm('¿Borrar todas tus respuestas guarda
 $('#gotoB').onclick=function(){var n=+$('#gotoIn').value;if(n>=1&&n<=81){go(n-1);$('#drawer').hidden=true}};
 function buildIdx(){var L=$('#lesList');L.innerHTML='';
   var mk=function(lbl,title,p,l){var b=document.createElement('button');b.dataset.l=l||'';b.innerHTML='<b>'+lbl+'</b><span>'+esc(title)+'<br><small>pág. '+(BOOK[p-1].pp||'–')+'</small></span>';b.onclick=function(){go(p-1);$('#drawer').hidden=true};L.appendChild(b)};
-  mk('📕','Portada',1);
+  mk('<svg class=sk aria-hidden=true><use href=#i-book></use></svg>','Portada',1);
   LES.forEach(function(l){mk(l.n,l.t||('Lección '+l.n),l.p,l.n)});
-  mk('📋','Lista de acciones irregulares',78);
+  mk('<svg class=sk aria-hidden=true><use href=#i-clipboard-list></use></svg>','Lista de acciones irregulares',78);
 }
-Promise.all([fetch('book.json?v=3de6d09584').then(function(r){return r.json()}),fetch('lessons.json?v=3de6d09584').then(function(r){return r.json()})]).then(function(r){
+Promise.all([fetch('book.json?v=b228d70bf9').then(function(r){return r.json()}),fetch('lessons.json?v=b228d70bf9').then(function(r){return r.json()})]).then(function(r){
   BOOK=r[0];LES=r[1];buildIdx();
   var h=location.hash.match(/p(\d+)/);cur=h?Math.min(80,Math.max(0,+h[1]-1)):load('page',0);
-  document.body.classList.toggle('practice',practice);$('#bMode').textContent=practice?'👁 Ver respuestas':'✍️ Practicar';
+  document.body.classList.toggle('practice',practice);$('#bMode').innerHTML=practice?'<svg class=sk aria-hidden=true><use href=#i-eye></use></svg>'+' Ver respuestas':'<svg class=sk aria-hidden=true><use href=#i-pencil></use></svg>'+' Practicar';
   try{var want=+localStorage.getItem('ql_app_leccion_v1');if(window.parent!==window&&want&&!h&&!(BOOK[cur]&&BOOK[cur].lesson===want)){var lw=LES.filter(function(x){return x.n===want})[0];if(lw)cur=lw.p-1}}catch(e){}
   render();
 }).catch(function(e){toast('Error cargando el libro: '+e)});
