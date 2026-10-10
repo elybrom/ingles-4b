@@ -47,3 +47,8 @@ aside{position:fixed;inset:0 0 0 auto;width:min(380px,92vw);z-index:40;backgroun
 #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);z-index:50;background:#111;color:#fff;padding:10px 14px;border-radius:12px;font-size:15px;max-width:92vw;text-align:center}
 body.practice .ans{display:none}
 .ans.ml{white-space:pre-line;align-items:center;line-height:1.15}
+.ans.ctr{justify-content:center}
+.ans.k-note,.ans.k-sent,.ans.k-comp{color:#2450c8}
+.ans.k-mean{color:#0d7a5f}
+.ans.k-month{color:#0d7a5f}
+.inp input{font-size:calc(2.6cqw * var(--fs,1))}

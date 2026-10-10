@@ -1,15 +1,127 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inglés 4B · Eli</title>
-<meta name="theme-color" content="#1d3b8f">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inglés 4B</title>
+<meta name="theme-color" content="#7C5CFC">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Inglés 4B">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
-body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;font-family:system-ui,-apple-system,sans-serif;background:linear-gradient(160deg,#1d3b8f,#3d6fd8);padding:24px;box-sizing:border-box}
-h1{color:#fff;margin:0 0 8px;font-size:1.6rem;text-align:center}
-a{display:block;width:100%;max-width:420px;padding:28px 20px;border-radius:20px;background:#fff;color:#1d3b8f;text-decoration:none;font-size:1.5rem;font-weight:700;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-a:active{transform:scale(.97)}
+:root{--tab-h:62px;--purple:#7C5CFC;--cyan:#22D3EE;--ink:#1E293B}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#F4F7FB;color:var(--ink)}
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+#chips{display:none;gap:8px;overflow-x:auto;padding:8px 10px;padding-top:max(8px,env(safe-area-inset-top));background:#fff;border-bottom:1px solid #E2E8F0;scrollbar-width:none;flex:0 0 auto}
+#chips::-webkit-scrollbar{display:none}
+#chips.on{display:flex}
+#chips button{flex:0 0 auto;border:0;border-radius:999px;padding:8px 14px;font:700 14px/1 inherit;font-family:inherit;background:#F1F5F9;color:#334155;min-height:36px}
+#chips button.on{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#fff;box-shadow:0 4px 12px rgba(124,92,252,.3)}
+#stage{position:relative;flex:1 1 auto;min-height:0}
+#stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;visibility:hidden}
+#stage iframe.on{visibility:visible}
+#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:#64748B;pointer-events:none}
+nav#tabs{flex:0 0 auto;display:flex;justify-content:space-around;align-items:stretch;background:rgba(255,255,255,.97);border-top:1px solid #E2E8F0;box-shadow:0 -4px 20px rgba(15,23,42,.06);padding:4px 2px;padding-bottom:max(4px,env(safe-area-inset-bottom));min-height:var(--tab-h)}
+nav#tabs button{flex:1 1 0;min-width:0;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 0;border-radius:14px;font-family:inherit;font-size:10.5px;font-weight:700;color:#64748B;letter-spacing:-.1px}
+nav#tabs button .ic{font-size:22px;line-height:1;display:block;width:42px;height:30px;line-height:30px;border-radius:12px;transition:background .15s,transform .15s}
+nav#tabs button.on{color:var(--purple)}
+nav#tabs button.on .ic{background:linear-gradient(135deg,#CFFAFE,#EDE9FE);transform:translateY(-1px)}
+nav#tabs button span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#lesBadge{position:absolute;right:8px;bottom:8px;z-index:5;display:none}
 </style></head><body>
-<h1>Inglés Quick Learning 4B</h1>
-<a href="libro4b/">📘 Mi libro 4B resuelto</a>
-<a href="guia/">🎒 Guía diaria</a>
+<div id="app">
+  <div id="chips" role="tablist" aria-label="Secciones"></div>
+  <div id="stage">
+    <div id="loading">Cargando…</div>
+    <iframe id="fLibro" title="Mi libro 4B resuelto" allow="autoplay; fullscreen"></iframe>
+    <iframe id="fGuia" title="Guía de inglés 4B" allow="autoplay; fullscreen; microphone; encrypted-media; picture-in-picture"></iframe>
+  </div>
+  <nav id="tabs" aria-label="Inglés 4B">
+    <button data-tab="libro"><span class="ic">📘</span><span class="t">Libro</span></button>
+    <button data-tab="clase"><span class="ic">🎒</span><span class="t">Mi clase</span></button>
+    <button data-tab="cuaderno"><span class="ic">📒</span><span class="t">Cuaderno</span></button>
+    <button data-tab="chart"><span class="ic">🎨</span><span class="t">Chart·ABC</span></button>
+    <button data-tab="gram"><span class="ic">✍️</span><span class="t">Gramática</span></button>
+    <button data-tab="videos"><span class="ic">▶️</span><span class="t">Videos</span></button>
+    <button data-tab="quiz"><span class="ic">🎯</span><span class="t">Quiz</span></button>
+  </nav>
+</div>
+<script>
+(function(){
+'use strict';
+var LK='ql_app_leccion_v1',TK='ql_app_tab_v1',SK='ql_app_sub_v1';
+var fL=document.getElementById('fLibro'),fG=document.getElementById('fGuia');
+var TABS={
+  libro:{f:'libro'},
+  clase:{f:'guia',sec:'miclase'},
+  cuaderno:{f:'guia',sec:'cuaderno'},
+  chart:{f:'guia',chips:[['colorchart','🎨 Color Chart'],['alphabet','🔤 ABC']]},
+  gram:{f:'guia',chips:[['explicar','💬 Explicar'],['prep','📍 Preposiciones'],['tabla','📊 Tabla de verbos'],['lecciones','📚 Lecciones'],['hoy','☀️ Hoy']]},
+  videos:{f:'guia',sec:'videos'},
+  quiz:{f:'guia',sec:'quiz'}
+};
+var SEC2TAB={miclase:'clase',cuaderno:'cuaderno',colorchart:'chart',alphabet:'chart',explicar:'gram',prep:'gram',tabla:'gram',lecciones:'gram',hoy:'gram',videos:'videos',quiz:'quiz'};
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+var sub={};try{sub=JSON.parse(ls(SK)||'{}')||{}}catch(e){sub={}}
+function lesson(){var n=+ls(LK);if(n>=21&&n<=39)return n;
+  try{var mc=JSON.parse(ls('ql_miclase_v1')||'null');if(mc&&mc.lesson>=21&&mc.lesson<=39)return mc.lesson}catch(e){}
+  var c=+ls('ql_cuaderno_leccion_v1');return (c>=21&&c<=39)?c:22}
+function setLesson(n){n=+n;if(n>=21&&n<=39&&n!==+ls(LK))ls(LK,String(n))}
+var loaded={libro:false,guia:false};
+function api(which){var f=which==='libro'?fL:fG;try{return which==='libro'?f.contentWindow.__libro:f.contentWindow.__guia}catch(e){return null}}
+function when(which,cb,tries){tries=tries||0;var a=api(which);
+  if(a&&(which!=='libro'||a.ready)){cb(a);return}
+  if(tries>200)return;setTimeout(function(){when(which,cb,tries+1)},60)}
+function ensure(which){if(loaded[which])return;loaded[which]=true;
+  var f=which==='libro'?fL:fG;
+  f.src=which==='libro'?'app/libro/index.html?v=3de6d09584':'app/guia.html?app=1&v=3de6d09584';
+  f.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true})}
+var cur=null;
+function renderChips(t){var c=document.getElementById('chips');var T=TABS[t];
+  if(!T.chips){c.classList.remove('on');c.innerHTML='';return}
+  c.innerHTML='';var act=sub[t]||T.chips[0][0];
+  T.chips.forEach(function(ch){var b=document.createElement('button');b.textContent=ch[1];b.dataset.sec=ch[0];b.className=ch[0]===act?'on':'';
+    b.onclick=function(){sub[t]=ch[0];ls(SK,JSON.stringify(sub));renderChips(t);when('guia',function(g){g.show(ch[0])})};c.appendChild(b)});
+  c.classList.add('on')}
+function show(t,fromGuide){
+  if(!TABS[t])t='libro';var T=TABS[t];var prev=cur;cur=t;
+  document.querySelectorAll('#tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.tab===t);b.setAttribute('aria-current',b.dataset.tab===t?'page':'false')});
+  ls(TK,t);if(location.hash!=='#'+t)history.replaceState(null,'','#'+t);
+  renderChips(t);
+  ensure(T.f);
+  fL.classList.toggle('on',T.f==='libro');fG.classList.toggle('on',T.f==='guia');
+  try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}
+  if(T.f==='libro'){
+    if(loaded.guia)when('guia',function(g){g.pause()});
+    when('libro',function(b){b.goLesson(lesson())});
+  }else{
+    when('libro',function(b){b.stop()});
+    if(fromGuide)return;
+    var L=lesson();
+    when('guia',function(g){
+      if(t==='clase'){if(g.mcN()!==L)g.clase(L);else g.show('miclase')}
+      else if(t==='cuaderno'){if(String(g.cqSel())!==String(L))g.cuaderno(L);else g.show('cuaderno')}
+      else if(T.chips){g.show(sub[t]||T.chips[0][0])}
+      else g.show(T.sec);
+    });
+  }
+}
+window.addEventListener('message',function(e){var m=e.data;if(!m||!m.ql)return;
+  if(m.ql==='lesson')setLesson(m.n);
+  if(m.ql==='sec'&&e.source===fG.contentWindow){var t=SEC2TAB[m.id];if(!t)return;
+    if(TABS[t].chips){sub[t]=m.id;ls(SK,JSON.stringify(sub))}
+    if(t!==cur&&TABS[cur]&&TABS[cur].f==='guia')show(t,true);else if(t===cur&&TABS[t].chips)renderChips(t)}
+  if(m.ql==='tab'&&TABS[m.tab])show(m.tab)});
+document.querySelectorAll('#tabs button').forEach(function(b){b.onclick=function(){show(b.dataset.tab)}});
+window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(TABS[h]&&h!==cur)show(h)});
+var start=location.hash.slice(1);if(!TABS[start])start=ls(TK)||'libro';if(!TABS[start])start='libro';
+show(start);
+/* precarga la otra parte para que cambiar de pestaña sea instantáneo */
+setTimeout(function(){ensure('libro');ensure('guia')},1200);
+window.__app={show:show,get tab(){return cur},lesson:lesson};
+})();
+</script>
 </body></html>
