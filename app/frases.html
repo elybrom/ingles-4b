@@ -1,0 +1,130 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inglés 4B · Frases</title>
+<script>if(window.parent===window)location.replace("../#frases")</script>
+<style>
+@font-face{font-family:Cormorant;src:url(fonts/cormorant-600.woff2) format('woff2');font-weight:600;font-display:swap}@font-face{font-family:Lora;src:url(fonts/lora-400.woff2) format('woff2');font-weight:400;font-display:swap}@font-face{font-family:Lora;src:url(fonts/lora-500.woff2) format('woff2');font-weight:600;font-display:swap}@font-face{font-family:Caveat;src:url(fonts/caveat.woff2) format('woff2');font-display:swap}
+:root{--paper:#F6EFE6;--card:#FFFAF4;--sand:#E8DFD3;--stone:#C9C2BA;--taupe:#8C8178;--ink:#3B2F2F;--muted:#8A7E76;--line:#E6DCD1;--pink:#E9C4C8;--pinkd:#C98F96;--amber:#B5763A}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:Lora,Georgia,serif}
+.sk{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+#top{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;gap:6px;align-items:center;padding:8px 12px;background:rgba(246,239,230,.94);border-bottom:1px dashed var(--stone)}
+#top h1{font-family:Cormorant,'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:22px;margin:0 auto 0 0;letter-spacing:.2px}
+#top h1 i{font-family:Caveat,cursive;font-style:normal;color:var(--pinkd);font-size:19px;margin-left:4px}
+.pill{border:1px solid var(--stone);background:var(--card);border-radius:999px;padding:5px 11px;font:inherit;font-size:12.5px;color:var(--ink)}
+.pill.on{background:var(--pink);border-color:var(--pinkd)}
+#feed{position:absolute;top:50px;bottom:0;left:0;right:0;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain}
+.card{scroll-snap-align:start;scroll-snap-stop:always;min-height:100%;padding:12px 14px 22px;display:flex}
+.in{flex:1;background:var(--card);border:1.5px solid var(--ink);border-radius:22px 26px 20px 24px;box-shadow:3px 4px 0 var(--sand);padding:0 16px 16px;position:relative;display:flex;flex-direction:column}
+.base{position:sticky;top:0;background:var(--card);padding:16px 0 10px;border-bottom:1.5px dashed var(--pink);z-index:2;border-radius:22px 22px 0 0}
+.tag{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.base h2{font-family:Cormorant,'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:32px;line-height:1.05;margin:4px 0 2px}
+.base p{margin:0;font-family:Caveat,cursive;font-size:20px;color:var(--pinkd)}
+.cnt{position:absolute;right:0;top:16px;font-size:12px;color:var(--muted)}
+ul{list-style:none;margin:10px 0 0;padding:0}
+li{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
+li .em{font-size:22px;width:28px;text-align:center}
+li .tx{flex:1}
+li b{display:block;font-weight:600;font-size:16.5px}
+li small{color:var(--muted);font-size:13.5px}
+.au{border:1.3px solid var(--ink);background:var(--paper);border-radius:50%;width:36px;height:36px;display:grid;place-items:center;color:var(--ink)}
+.au.play{background:var(--pink)}
+.reto{margin-top:auto;padding-top:14px}
+.rbox{border:1.5px dashed var(--ink);border-radius:18px 14px 20px 16px;padding:12px 14px;background:#FBF3EC;text-align:center}
+.rbox .h{font-family:Caveat,cursive;font-size:22px;color:var(--amber)}
+.rbox .es{font-size:17px;margin:4px 0 10px}
+.cd{font-family:Cormorant,Georgia,serif;font-size:64px;line-height:1;height:70px;display:none;color:var(--pinkd)}
+.cd.go{display:block;animation:pop .9s ease-out}
+@keyframes pop{0%{transform:scale(.4);opacity:0}30%{transform:scale(1.15);opacity:1}100%{transform:scale(1);opacity:.85}}
+.ans{display:none;font-weight:600;font-size:19px;margin:6px 0 10px;align-items:center;justify-content:center;gap:8px}
+.ans.on{display:flex;animation:pop .5s}
+.btn{border:1.5px solid var(--ink);background:var(--pink);border-radius:999px;padding:8px 16px;font:inherit;font-size:14.5px;color:var(--ink);display:inline-flex;gap:6px;align-items:center}
+.btn.ok{background:var(--sand)}.btn.done{background:#D9E4CF}
+.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hint{text-align:center;color:var(--muted);font-family:Caveat,cursive;font-size:18px;margin-top:8px}
+</style></head><body>
+<!-- íconos: #i-volume #i-stopwatch #i-circle-check #i-square -->
+<!--SKETCH-SPRITE--><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs><symbol id="i-circle-check" viewBox="0 0 24 24"><path d="M3 12C2.5 18.9 10.5 22.9 16.2 19.9M3.2 11.9C3.4 18.8 10.1 23.6 17.1 20.1M16.5 19.8C19.2 18 20.6 15.7 21.2 12.4M17 20C18.7 18.6 21 15.8 21.2 12M21 12C21 5.4 13.8 0.7 7.7 3.8M20.6 11.5C20.8 4.9 13.1 1.1 7.4 3.7M7.5 4.2C5 6.3 3.5 9.2 2.7 11.7M7.7 4C4.8 5.3 2.8 8.4 3.4 11.8M9 12.1C9.2 12.3 10.2 12.9 11.2 13.7M9.1 12C9.5 12.5 10.1 12.9 11 14.1M10.6 14.5C11.9 12.8 13.3 11.6 15.3 10.3M11.2 14.1C12.6 12.7 13.7 11 14.8 10.2"/></symbol><symbol id="i-square" viewBox="0 0 24 24"><path d="M3 5C2.8 4.4 3.9 3.3 5.3 2.5M2.9 4.7C3.4 3.7 3.3 3.3 4.6 2.5M4.7 3.1C10.5 2.9 15.5 3.2 18.8 3.2M4.9 2.8C9.8 3.1 14.5 3 18.9 3.2M19 3C20.3 3.5 21.5 4.1 21 5.4M18.8 3.3C20.3 3.5 21.1 3.9 21.2 4.7M21 5.4C21.2 8.9 20.9 11.9 21.4 19.1M20.9 5.1C21.2 10.4 21.1 15.6 20.8 18.9M21 19C21.4 20 20 20.5 19.1 20.9M21.5 19.3C20.8 20.1 20.2 21 18.5 21.4M18.5 20.8C16 21.3 13.3 21.4 5 21.2M19 21.1C14.3 21 9.9 21 4.8 20.9M5 21C4 21.4 2.5 20 3.3 19M5.1 20.6C4.3 21.2 2.6 20.4 3.3 19.5M3.1 18.6C3.1 14 3 9.9 2.8 5.3M2.8 19.1C2.9 16 3.1 12.9 2.8 5.1"/></symbol><symbol id="i-stopwatch" viewBox="0 0 24 24"><path d="M5 13C4.8 18.3 10.7 21.9 15.6 19.4M4.5 12.7C4.8 18.3 10.5 22.1 16.1 18.5M15.5 19.1C17.7 18.1 19.2 15.8 18.7 13M15.5 19.4C17.5 18 19 15.1 19.6 12.5M19 13C19.5 7.3 12.8 3.9 8.5 7.3M19.5 12.9C19.2 7.5 13.7 3.7 8.7 6.3M8.5 6.9C5.9 8.3 5.2 10.3 4.6 13.2M8.1 6.7C5.8 7.8 4.5 10.5 5.3 12.5M14.5 10.5C13.7 11.3 13 12.1 11.9 13M17 8C17.3 7.6 17.6 7.4 18 7M14 3h-4"/></symbol><symbol id="i-volume" viewBox="0 0 24 24"><path d="M15 8C18 10.3 17.2 14.2 14.8 16.5M15.3 8.3C17.4 9.8 18.1 14.4 15.2 16.3M17.7 5C21.6 8.9 21.9 15.6 17.5 19.1M17.5 4.8C22.1 8.1 22.2 15.8 17.3 19.4M6.1 15C5.5 15.1 5.1 15 4.2 15.1M5.9 15C5.2 15 4.4 15 4.1 15M4 15C3.3 15.5 2.7 14.3 3 13.9M4.5 14.5C3.8 15.3 2.9 15.2 3.3 14.3M2.7 13.7C2.8 13.2 3.3 12 2.8 10.4M3.2 13.8C3.1 12.4 2.9 11.1 3.1 10.1M3 10C2.5 9.6 3.8 8.8 4.5 8.7M3.4 9.7C3.3 9.1 3.7 8.7 3.7 9.6M4.1 9.1C4.6 9.1 5.6 9.1 6 8.9M3.9 9C4.5 9 5.2 9.1 6 9.1M6.2 9.1C7.5 7 8.7 5.4 9.3 4.6M6 9C7 7.6 8.3 6.1 9.4 4.6M9.5 4.5C9.7 4.1 10.7 3.6 10.4 4.2M9.6 4.6C9.6 3.4 10.6 3.6 10.3 4.5M10.9 4.4C10.6 5 11.2 4.6 10.9 5.1M10.5 3.9C10.9 4.8 10.8 4.8 11.2 4.5M10.6 4.6C11.3 9.4 11.3 13.7 10.6 18.7M11 5C11.3 8.6 11.1 12.8 11.1 19.2M11 19C11.1 19.8 10.4 20.6 9.6 19.8M10.8 19C11.3 19.2 11 20.3 10.5 20M9.9 19.9C9.3 20.3 9.9 19.6 9.7 19.1M9.9 19.8C9.2 19.4 9.6 19.3 9.2 19.2M9.6 19.7C8.5 17.9 7.2 16.5 5.6 14.6M9.3 19.3C8.5 18.4 7.7 17.2 5.8 15"/></symbol></defs></svg><!--/SKETCH-SPRITE-->
+<div id="top"><h1>Frases <i>like reels</i></h1><button class="pill" id="fL"></button><button class="pill" id="fA">Todas</button></div>
+<div id="feed"></div>
+<script>
+(function(){'use strict';
+var FK='ql_frases_v1';
+// [lección, base, nota, [[emoji,en,es]...], [retoES, retoEN], fuente]
+var SETS=[
+[27,'WAY TOO …','demasiado (de más, exagerado)',[['🍽️',"I'm way too full.",'Estoy demasiado lleno.'],['🔥',"It's way too hot.",'Hace demasiado calor.'],['🥶',"It's way too cold.",'Hace demasiado frío.'],['🧠',"You're way too smart.",'Eres demasiado inteligente.']],['Estoy demasiado cansado.',"I'm way too tired."],'@camperezn'],
+[26,'Do you + VERBO?','pregunta en Today con "do"',[['💼','Do you work?','¿Trabajas?'],['☕','Do you like coffee?','¿Te gusta el café?'],['🏠','Do you live here?','¿Vives aquí?'],['🚗','Do you have a car?','¿Tienes carro?']],['¿Hablas inglés?','Do you speak English?'],'@camperezn'],
+[39,'I was about to …','estaba a punto de…',[['🚿','I was about to take a shower.','Estaba a punto de bañarme.'],['📖','I was about to read a book.','Estaba a punto de leer un libro.'],['🎬','I was about to watch a movie.','Estaba a punto de ver una película.'],['🚪','I was about to leave.','Estaba a punto de irme.']],['Estaba a punto de llamarla.','I was about to call her.'],'@camperezn'],
+[22,'He said that …','explicar lo que alguien dijo',[['🗣️','He said that he was tired.','Dijo que estaba cansado.'],['🍕','She said that she liked pizza.','Dijo que le gustaba la pizza.'],['🏫','They said that the class was easy.','Dijeron que la clase era fácil.'],['⏰','He said that he had to work.','Dijo que tenía que trabajar.'],['🌧️','She said that it was raining.','Dijo que estaba lloviendo.']],['Dijo que vivía en Monterrey.','He said that he lived in Monterrey.'],'Lección 22'],
+[23,'SAID vs. TOLD','said (algo) · told (a alguien)',[['💬','He said that he was hungry.','Dijo que tenía hambre.'],['👂','He told me that he was hungry.','Me dijo que tenía hambre.'],['👩','She told us that she was busy.','Nos dijo que estaba ocupada.'],['📱','They told her that the phone was new.','Le dijeron que el teléfono era nuevo.']],['Ella me dijo que estaba feliz.','She told me that she was happy.'],'Lección 23'],
+[23,'He asked if …','explicar preguntas de sí / no',[['❓','He asked if I was ready.','Preguntó si estaba listo.'],['☕','She asked if I wanted coffee.','Preguntó si quería café.'],['🚗','He asked if I had a car.','Preguntó si tenía carro.'],['🎤','They asked if she could sing.','Preguntaron si ella sabía cantar.']],['Me preguntó si estaba cansado.','He asked me if I was tired.'],'Lección 23'],
+[24,'She told me to …','explicar órdenes',[['🧹','She told me to clean my room.','Me dijo que limpiara mi cuarto.'],['🤫',"He told us not to talk.",'Nos dijo que no habláramos.'],['📚','The teacher told me to read page 10.','La maestra me dijo que leyera la página 10.'],['🚪','She told him to close the door.','Le dijo que cerrara la puerta.']],['Me dijo que esperara.','He told me to wait.'],'Lección 24'],
+[25,'He asked me where …','explicar preguntas WH',[['📍','He asked me where I lived.','Me preguntó dónde vivía.'],['⏰','She asked me what time it was.','Me preguntó qué hora era.'],['🙋','They asked me who she was.','Me preguntaron quién era ella.'],['🏃','He asked me why I was running.','Me preguntó por qué estaba corriendo.']],['Me preguntó cómo me llamaba.','She asked me what my name was.'],'Lección 25'],
+[26,'Do / Does / Did → if …','al explicar se va el auxiliar',[['☕','"Do you like tea?" → He asked if I liked tea.','Preguntó si me gustaba el té.'],['🎸','"Does she play guitar?" → He asked if she played guitar.','Preguntó si ella tocaba guitarra.'],['🍔','"Did you eat?" → She asked if I had eaten.','Preguntó si había comido.'],['🏖️','"Did they go?" → He asked if they had gone.','Preguntó si habían ido.']],['"¿Viste la película?" → Me preguntó si había visto la película.','He asked me if I had seen the movie.'],'Lección 26'],
+[27,'The most … / the …est','comparar 3 o más cosas',[['🏔️','It is the tallest mountain.','Es la montaña más alta.'],['💎','This is the most expensive ring.','Este es el anillo más caro.'],['⭐','She is the best student.','Ella es la mejor estudiante.'],['🌧️','It was the worst day.','Fue el peor día.']],['Él es el más divertido de la clase.','He is the funniest in the class.'],'Lección 27'],
+[28,"…, isn't it? / don't you?",'preguntas de confirmación',[['☀️',"It's hot, isn't it?",'Hace calor, ¿verdad?'],['🎶',"You like music, don't you?",'Te gusta la música, ¿no?'],['😴',"She was tired, wasn't she?",'Estaba cansada, ¿verdad?'],['🚌',"They can't come, can they?",'No pueden venir, ¿o sí?']],['Hablas inglés, ¿verdad?',"You speak English, don't you?"],'Lección 28'],
+[39,'Today → Yesterday → Super Yesterday','los pasados QL (irregulares)',[['🚶','go → went → gone','ir'],['🍎','eat → ate → eaten','comer'],['👀','see → saw → seen','ver'],['✍️','write → wrote → written','escribir'],['📞','speak → spoke → spoken','hablar']],['tomar (Today, Yesterday, Super Yesterday)','take → took → taken'],'Lección 39'],
+[39,'Super-Super Yesterday = had + SY','algo que ya había pasado antes',[['🍽️','I had eaten before class.','Yo había comido antes de la clase.'],['🚌','The bus had left.','El camión ya se había ido.'],['🎬','She had seen the movie.','Ella ya había visto la película.'],['📝','We had finished the homework.','Ya habíamos terminado la tarea.']],['Él ya se había ido.','He had gone.'],'Lección 39'],
+[29,'Yesterday I …','contar algo que pasó (composición)',[['🚲','Yesterday I fell off my bike.','Ayer me caí de la bici.'],['🤕','I broke my arm.','Me rompí el brazo.'],['🚑','My mom took me to the hospital.','Mi mamá me llevó al hospital.'],['😮‍💨','It was the worst accident.','Fue el peor accidente.']],['Ayer perdí mis llaves.','Yesterday I lost my keys.'],'Lección 29'],
+[30,'a ten-year-old boy','descripciones compuestas (sin -s)',[['👦','a ten-year-old boy','un niño de diez años'],['💵','a fifty-dollar shirt','una camisa de cincuenta dólares'],['⏱️','a two-hour class','una clase de dos horas'],['🏢','a five-story building','un edificio de cinco pisos']],['un viaje de tres días','a three-day trip'],'Lección 30'],
+[31,"It's half past …",'decir la hora',[['🕞',"It's half past three.",'Son las tres y media.'],['🕕',"It's a quarter past six.",'Son las seis y cuarto.'],['🕗',"It's a quarter to eight.",'Son cuarto para las ocho.'],['🕛',"It's twelve o'clock.",'Son las doce en punto.']],['Son las nueve y diez.',"It's ten past nine."],'Lección 31'],
+[32,'next to / across from / between','dar direcciones (preposiciones)',[['🏦','The bank is next to the park.','El banco está junto al parque.'],['🏥','The hospital is across from the school.','El hospital está enfrente de la escuela.'],['☕','The café is between the bank and the store.','El café está entre el banco y la tienda.'],['➡️','Go straight and turn right.','Sigue derecho y da vuelta a la derecha.']],['La farmacia está en la esquina.','The pharmacy is on the corner.'],'Lección 32'],
+[33,'IN · ON · AT (tiempo)','in mes/año · on día · at hora',[['📅','in May / in 2026','en mayo / en 2026'],['🎂','on May 5th','el 5 de mayo'],['🗓️','on Monday','el lunes'],['⏰','at 3 o\'clock','a las 3'],['🌙','at night','en la noche']],['Mi cumpleaños es el 12 de junio.','My birthday is on June 12th.'],'Lección 33'],
+[34,'I live ON … / AT …','direcciones: on calle · at número · in ciudad',[['🛣️','I live on Juárez Street.','Vivo en la calle Juárez.'],['🔢','I live at 245 Juárez Street.','Vivo en Juárez 245.'],['🌆','I live in Mexico City.','Vivo en la Ciudad de México.'],['🏢','She lives on the third floor.','Vive en el tercer piso.']],['Trabajo en la avenida Reforma.','I work on Reforma Avenue.'],'Lección 34'],
+[25,'FROM · WITH','de dónde · con quién',[['🌎',"I'm from Mexico.",'Soy de México.'],['👫','I study with my friends.','Estudio con mis amigos.'],['🎁','This gift is from my mom.','Este regalo es de mi mamá.'],['✏️','I write with a pencil.','Escribo con lápiz.']],['Ella viene de Guadalajara con su hermano.','She comes from Guadalajara with her brother.'],'Preposiciones'],
+[35,'If I were …, I would …','situaciones imaginarias',[['💰','If I were rich, I would travel.','Si fuera rico, viajaría.'],['🦸','If I were you, I would study.','Si yo fuera tú, estudiaría.'],['🏖️','If I had time, I would go to the beach.','Si tuviera tiempo, iría a la playa.'],['🗣️','If I spoke English, I would work in the US.','Si hablara inglés, trabajaría en EU.']],['Si tuviera carro, te llevaría.','If I had a car, I would take you.'],'Lección 35'],
+[36,'AS vs. WHILE','mientras / al mismo tiempo',[['🍳','While I was cooking, she called.','Mientras cocinaba, ella llamó.'],['🎧','As I walked, I listened to music.','Mientras caminaba, escuchaba música.'],['📺','He fell asleep while he was watching TV.','Se durmió mientras veía la tele.'],['🌧️','As we left, it started to rain.','Al salir, empezó a llover.']],['Mientras estudiaba, mi hermano jugaba.','While I was studying, my brother was playing.'],'Lección 36'],
+[37,'… as if …','como si…',[['😎','He talks as if he were the boss.','Habla como si fuera el jefe.'],['👻','She looked as if she had seen a ghost.','Parecía como si hubiera visto un fantasma.'],['🍝','You eat as if you were starving.','Comes como si te murieras de hambre.'],['🏃','He ran as if he were late.','Corrió como si fuera tarde.']],['Actúa como si supiera todo.','He acts as if he knew everything.'],'Lección 37'],
+[38,'How much? · How many?','incontables · contables',[['💧','How much water do you drink?','¿Cuánta agua tomas?'],['🍎','How many apples do you want?','¿Cuántas manzanas quieres?'],['💵','How much money do you have?','¿Cuánto dinero tienes?'],['👥','How many people are there?','¿Cuántas personas hay?']],['¿Cuántos hermanos tienes?','How many brothers and sisters do you have?'],'Lección 38'],
+[36,'Auxiliares: do · does · did · can · will','la ayuda va primero en la pregunta',[['🙋','Does she work here?','¿Ella trabaja aquí?'],['🍕','Did you eat pizza?','¿Comiste pizza?'],['🏊','Can you swim?','¿Sabes nadar?'],['✈️','Will you travel tomorrow?','¿Vas a viajar mañana?'],['😐',"I don't know.",'No sé.']],['¿Él vino a la clase ayer?','Did he come to class yesterday?'],'Auxiliares']
+];
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+var st={};try{st=JSON.parse(ls(FK)||'{}')||{}}catch(e){st={}}
+if(!st.done)st.done={};
+function save(){ls(FK,JSON.stringify(st))}
+function lesson(){var n=+ls('ql_app_leccion_v1');if(n>=21&&n<=39)return n;
+  try{var mc=JSON.parse(ls('ql_miclase_v1')||'null');if(mc&&mc.lesson>=21&&mc.lesson<=39)return mc.lesson}catch(e){}
+  var c=+ls('ql_cuaderno_leccion_v1');return (c>=21&&c<=39)?c:22}
+// voz: misma preferencia que la guía (ql_guia_voice_v2 = "nombre|lang"), si no, voz masculina
+function score(v){var n=v.name||'';if(!/^en/i.test(v.lang||''))return 0;
+  if(/\bAlex\b/i.test(n))return 100;if(/Microsoft (David|Guy|Mark)/i.test(n))return 98;if(/\bDaniel\b/i.test(n))return 96;if(/\bFred\b/i.test(n))return 94;if(/UK English Male/i.test(n))return 92;if(/male/i.test(n)&&!/female/i.test(n))return 80;return /en.US/i.test(v.lang)?20:10}
+function voice(){var vs=(window.speechSynthesis&&speechSynthesis.getVoices())||[];var s=ls('ql_guia_voice_v2')||'';
+  if(s){for(var i=0;i<vs.length;i++)if(vs[i].name+'|'+vs[i].lang===s)return vs[i]}
+  return vs.slice().sort(function(a,b){return score(b)-score(a)})[0]||null}
+function speak(t,btn){if(!window.speechSynthesis)return;speechSynthesis.cancel();
+  t=t.replace(/^"[^"]*"\s*→\s*/,'').replace(/→/g,',');
+  var u=new SpeechSynthesisUtterance(t),v=voice();u.lang=v?v.lang:'en-US';u.rate=.92;u.pitch=1;if(v)u.voice=v;
+  if(btn){btn.classList.add('play');u.onend=u.onerror=function(){btn.classList.remove('play')}}
+  speechSynthesis.speak(u)}
+if(window.speechSynthesis)speechSynthesis.getVoices();
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function ic(id){return '<svg class="sk" aria-hidden="true"><use href="#'+id+'"/></svg>'}
+var mode=st.mode||'les';
+function render(){var L=lesson(),feed=document.getElementById('feed');
+  var list=SETS.map(function(s,i){return[s,i]});
+  var mine=list.filter(function(x){return x[0][0]===L});
+  var fl=document.getElementById('fL');fl.textContent='Lección '+L+(mine.length?' · '+mine.length:'');
+  if(mode==='les'&&mine.length)list=mine.concat(list.filter(function(x){return x[0][0]!==L}).slice(0,0));
+  fl.classList.toggle('on',mode==='les'&&!!mine.length);document.getElementById('fA').classList.toggle('on',!(mode==='les'&&mine.length));
+  feed.innerHTML=list.map(function(x,k){var s=x[0],i=x[1],id='s'+i,d=st.done[id];
+    return '<section class="card" data-i="'+i+'"><div class="in"><div class="base"><div class="tag">'+(/^Lecci/.test(s[5])?'Lección '+s[0]:esc(s[5])+' · Lección '+s[0])+'</div><span class="cnt">'+(k+1)+'/'+list.length+'</span><h2>'+esc(s[1])+'</h2><p>'+esc(s[2])+'</p></div><ul>'+
+      s[3].map(function(e,j){return '<li><span class="em">'+e[0]+'</span><span class="tx"><b>'+esc(e[1])+'</b><small>'+esc(e[2])+'</small></span><button class="au" data-t="'+i+'.'+j+'" aria-label="Escuchar">'+ic('i-volume')+'</button></li>'}).join('')+
+      '</ul><div class="reto"><div class="rbox"><div class="h">Reto 3·2·1</div><div class="es">¿Cómo dirías… <b>'+esc(s[4][0].replace(/[.]$/,''))+'</b>?</div><div class="cd"></div><div class="ans"><span>'+esc(s[4][1])+'</span><button class="au" data-r="'+i+'" aria-label="Escuchar">'+ic('i-volume')+'</button></div><div class="row"><button class="btn go">'+ic('i-stopwatch')+'<span>Empezar 3-2-1</span></button><button class="btn ok'+(d?' done':'')+'" data-d="'+id+'">'+ic(d?'i-circle-check':'i-square')+'<span>¡Lo dije!</span></button></div></div>'+(k===0?'<div class="hint">desliza hacia arriba ↑</div>':'')+'</div></div></section>'}).join('');
+  feed.scrollTop=0}
+document.getElementById('feed').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.t){var p=b.dataset.t.split('.');speak(SETS[+p[0]][3][+p[1]][1],b);return}
+  if(b.dataset.r){speak(SETS[+b.dataset.r][4][1],b);return}
+  if(b.dataset.d){var id=b.dataset.d;if(st.done[id])delete st.done[id];else st.done[id]=Date.now();save();
+    b.classList.toggle('done',!!st.done[id]);b.querySelector('use').setAttribute('href','#'+(st.done[id]?'i-circle-check':'i-square'));return}
+  if(b.classList.contains('go')){var box=b.closest('.rbox'),cd=box.querySelector('.cd'),an=box.querySelector('.ans'),i=+b.closest('.card').dataset.i;
+    an.classList.remove('on');b.disabled=true;var n=3;
+    (function tick(){if(n>0){cd.textContent=n;cd.classList.remove('go');void cd.offsetWidth;cd.classList.add('go');n--;setTimeout(tick,1000)}
+      else{cd.classList.remove('go');an.classList.add('on');b.disabled=false;b.querySelector('span').textContent='Otra vez';speak(SETS[i][4][1],an.querySelector('.au'))}})()}});
+document.getElementById('fL').onclick=function(){mode='les';st.mode=mode;save();render()};
+document.getElementById('fA').onclick=function(){mode='all';st.mode=mode;save();render()};
+var lastL=lesson();
+window.addEventListener('storage',function(e){if(e.key==='ql_app_leccion_v1'&&lesson()!==lastL){lastL=lesson();render()}});
+window.__frases={refresh:function(){if(lesson()!==lastL){lastL=lesson();render()}},stop:function(){try{speechSynthesis.cancel()}catch(e){}},count:SETS.length};
+render();
+})();
+</script></body></html>
