@@ -140,7 +140,7 @@ function buildIdx(){var L=$('#lesList');L.innerHTML='';
   LES.forEach(function(l){mk(l.n,l.t||('Lección '+l.n),l.p,l.n)});
   mk('<svg class=sk aria-hidden=true><use href=#i-clipboard-list></use></svg>','Lista de acciones irregulares',78);
 }
-Promise.all([fetch('book.json?v=cc2e27f3bb').then(function(r){return r.json()}),fetch('lessons.json?v=cc2e27f3bb').then(function(r){return r.json()})]).then(function(r){
+Promise.all([fetch('book.json?v=3d5f604f4a').then(function(r){return r.json()}),fetch('lessons.json?v=3d5f604f4a').then(function(r){return r.json()})]).then(function(r){
   BOOK=r[0];LES=r[1];buildIdx();
   var h=location.hash.match(/p(\d+)/);cur=h?Math.min(80,Math.max(0,+h[1]-1)):load('page',0);
   document.body.classList.toggle('practice',practice);$('#bMode').innerHTML=practice?'<svg class=sk aria-hidden=true><use href=#i-eye></use></svg>'+' Ver respuestas':'<svg class=sk aria-hidden=true><use href=#i-pencil></use></svg>'+' Practicar';

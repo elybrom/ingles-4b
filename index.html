@@ -88,9 +88,9 @@ function when(which,cb,tries){tries=tries||0;var a=api(which);
   if(a&&(which!=='libro'||a.ready)){cb(a);return}
   if(tries>200)return;setTimeout(function(){when(which,cb,tries+1)},60)}
 function ensure(which){if(loaded[which])return;loaded[which]=true;
-  if(which==='frases'){fF.src='app/frases.html?v=cc2e27f3bb';fF.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true});return}
+  if(which==='frases'){fF.src='app/frases.html?v=3d5f604f4a';fF.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true});return}
   var f=which==='libro'?fL:fG;
-  f.src=which==='libro'?'app/libro/index.html?v=cc2e27f3bb':'app/guia.html?app=1&v=cc2e27f3bb';
+  f.src=which==='libro'?'app/libro/index.html?v=3d5f604f4a':'app/guia.html?app=1&v=3d5f604f4a';
   f.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true})}
 var cur=null;
 function renderChips(t){var c=document.getElementById('chips');var T=TABS[t];
