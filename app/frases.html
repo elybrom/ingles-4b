@@ -29,6 +29,8 @@ li b{display:block;font-weight:600;font-size:16.5px}
 li small{color:var(--muted);font-size:13.5px}
 .au{border:1.3px solid var(--ink);background:var(--paper);border-radius:50%;width:36px;height:36px;display:grid;place-items:center;color:var(--ink)}
 .au.play{background:var(--pink)}
+.au.big{width:48px;height:48px;background:var(--pink);animation:pulse 1.2s ease-in-out 3}
+@keyframes pulse{50%{transform:scale(1.15)}}
 .reto{margin-top:auto;padding-top:14px}
 .rbox{border:1.5px dashed var(--ink);border-radius:18px 14px 20px 16px;padding:12px 14px;background:#FBF3EC;text-align:center}
 .rbox .h{font-family:Caveat,cursive;font-size:22px;color:var(--amber)}
@@ -41,6 +43,7 @@ li small{color:var(--muted);font-size:13.5px}
 .btn{border:1.5px solid var(--ink);background:var(--pink);border-radius:999px;padding:8px 16px;font:inherit;font-size:14.5px;color:var(--ink);display:inline-flex;gap:6px;align-items:center}
 .btn.ok{background:var(--sand)}.btn.done{background:#D9E4CF}
 .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.tap{display:none;font-family:Caveat,cursive;font-size:17px;color:var(--muted);margin:-4px 0 8px}.ans.on+.tap{display:block}
 .hint{text-align:center;color:var(--muted);font-family:Caveat,cursive;font-size:18px;margin-top:8px}
 </style></head><body>
 <!-- íconos: #i-volume #i-stopwatch #i-circle-check #i-square -->
@@ -50,6 +53,8 @@ li small{color:var(--muted);font-size:13.5px}
 <script>
 (function(){'use strict';
 var FK='ql_frases_v1';
+var AUDIO={"I'm way too full.": "1fe7fbc3afc6.mp3","It's way too hot.": "f42cdfe8068c.mp3","It's way too cold.": "518299d0e6f8.mp3","You're way too smart.": "3279e6009919.mp3","Do you work?": "a5378f9de4a2.mp3","Do you like coffee?": "564b6c69bccb.mp3","Do you live here?": "24b42c75cd97.mp3","Do you have a car?": "fbc0088537d4.mp3","I was about to take a shower.": "a896b073de85.mp3","I was about to read a book.": "f06e1ff89fa4.mp3","I was about to watch a movie.": "05a539f0eeee.mp3","I was about to leave.": "be37aac3d421.mp3","He said that he was tired.": "0a0b7b0baf92.mp3","She said that she liked pizza.": "da73bf7cf9be.mp3","They said that the class was easy.": "53ad91c78c36.mp3","He said that he had to work.": "40b0eff3e2f9.mp3","She said that it was raining.": "745b4325c94d.mp3","He said that he was hungry.": "abca76a9ef94.mp3","He told me that he was hungry.": "db15e8abcef0.mp3","She told us that she was busy.": "7facf70152a0.mp3","They told her that the phone was new.": "17725192d38c.mp3","He asked if I was ready.": "b3f211fcf4d1.mp3","She asked if I wanted coffee.": "af3cb4796648.mp3","He asked if I had a car.": "e31f3f7faec8.mp3","They asked if she could sing.": "cd0c12e8cf95.mp3","She told me to clean my room.": "35f8373405f0.mp3","He told us not to talk.": "09d0ff71645b.mp3","The teacher told me to read page 10.": "ada13537d145.mp3","She told him to close the door.": "ee05ec90dff3.mp3","He asked me where I lived.": "a7255b98166f.mp3","She asked me what time it was.": "0a9e12bfe8b1.mp3","They asked me who she was.": "f72e09c7d894.mp3","He asked me why I was running.": "3362129f9dcd.mp3","\"Do you like tea?\" → He asked if I liked tea.": "eca98cb25abc.mp3","\"Does she play guitar?\" → He asked if she played guitar.": "9d0e7d062f61.mp3","\"Did you eat?\" → She asked if I had eaten.": "c072c9c701b5.mp3","\"Did they go?\" → He asked if they had gone.": "8ed52d85666f.mp3","It is the tallest mountain.": "9899ef4b4117.mp3","This is the most expensive ring.": "66684ecadb74.mp3","She is the best student.": "44d0d8c2eae2.mp3","It was the worst day.": "44a7e6114309.mp3","It's hot, isn't it?": "423600161676.mp3","You like music, don't you?": "d9fa1459db0a.mp3","She was tired, wasn't she?": "e9b63723f674.mp3","They can't come, can they?": "a66d2a2ee6cf.mp3","go → went → gone": "8c3e29f84fb1.mp3","eat → ate → eaten": "2906762b329a.mp3","see → saw → seen": "97cff99ca635.mp3","write → wrote → written": "0d944daa6918.mp3","speak → spoke → spoken": "7a0f4b8f71d7.mp3","I had eaten before class.": "da9a5366b3c2.mp3","The bus had left.": "89da7383f067.mp3","She had seen the movie.": "1f0b0932ab63.mp3","We had finished the homework.": "35e7ad64ecae.mp3","Yesterday I fell off my bike.": "42d9eff3f43d.mp3","I broke my arm.": "50be2182e8c3.mp3","My mom took me to the hospital.": "ea0214eca6e1.mp3","It was the worst accident.": "47bc9c8f5138.mp3","a ten-year-old boy": "79244af8339b.mp3","a fifty-dollar shirt": "f6096ab2e97c.mp3","a two-hour class": "346b81b93ff7.mp3","a five-story building": "d648ab003f67.mp3","It's half past three.": "5b62d3353926.mp3","It's a quarter past six.": "7db1c4d0aa79.mp3","It's a quarter to eight.": "6421f998f97e.mp3","It's twelve o'clock.": "45e01d11f2c8.mp3","The bank is next to the park.": "8ad7c862dd25.mp3","The hospital is across from the school.": "f630e2a74c01.mp3","The café is between the bank and the store.": "dda7883c43d6.mp3","Go straight and turn right.": "594dc9c81142.mp3","in May / in 2026": "f556f3c0ff60.mp3","on May 5th": "ffdddd477ebf.mp3","on Monday": "d61045227893.mp3","at 3 o'clock": "7ca94b69b8e5.mp3","at night": "8812b0e1532f.mp3","I live on Juárez Street.": "b0cbc8dd7f97.mp3","I live at 245 Juárez Street.": "6a367d8d4273.mp3","I live in Mexico City.": "3cbb1a00c743.mp3","She lives on the third floor.": "0bf7eaff355e.mp3","I'm from Mexico.": "2e86f7ac021e.mp3","I study with my friends.": "719903da074f.mp3","This gift is from my mom.": "698bd0c10d7c.mp3","I write with a pencil.": "e1fe0e732b82.mp3","If I were rich, I would travel.": "a55b32659c81.mp3","If I were you, I would study.": "cbc6a3d933ba.mp3","If I had time, I would go to the beach.": "0143237d5ac4.mp3","If I spoke English, I would work in the US.": "b7ec76081d33.mp3","While I was cooking, she called.": "83679430a247.mp3","As I walked, I listened to music.": "26fde677fc65.mp3","He fell asleep while he was watching TV.": "8050db8ea4c1.mp3","As we left, it started to rain.": "fd2d2c7b64af.mp3","He talks as if he were the boss.": "a775e6e4797d.mp3","She looked as if she had seen a ghost.": "2a8c9ecde8cf.mp3","You eat as if you were starving.": "7bb3800dfa59.mp3","He ran as if he were late.": "459b20b1776d.mp3","How much water do you drink?": "c4666320e878.mp3","How many apples do you want?": "b0fc3d633825.mp3","How much money do you have?": "a094c9a3e8dc.mp3","How many people are there?": "25be72a8c3cf.mp3","Does she work here?": "5dfff49eb8e2.mp3","Did you eat pizza?": "26b566d982af.mp3","Can you swim?": "2a9e6738e323.mp3","Will you travel tomorrow?": "daa19f65658d.mp3","I don't know.": "acedd23ecfb0.mp3","I'm way too tired.": "32739bba1720.mp3","Do you speak English?": "3fb56ab2c64f.mp3","I was about to call her.": "827cc953dfa5.mp3","He said that he lived in Monterrey.": "915f12a92f13.mp3","She told me that she was happy.": "30ecc0d59ae4.mp3","He asked me if I was tired.": "81089d41a20d.mp3","He told me to wait.": "08ed5f71dc51.mp3","She asked me what my name was.": "b70aef18614f.mp3","He asked me if I had seen the movie.": "95617af7cfe9.mp3","He is the funniest in the class.": "d9788c6c175b.mp3","You speak English, don't you?": "77665068713b.mp3","take → took → taken": "69e7b8723f62.mp3","He had gone.": "a6b511d3a3f8.mp3","Yesterday I lost my keys.": "9084e3a560ad.mp3","a three-day trip": "24dd7fc3d87b.mp3","It's ten past nine.": "2940174e0cbf.mp3","The pharmacy is on the corner.": "062a4171bcef.mp3","My birthday is on June 12th.": "836f11cd66f1.mp3","I work on Reforma Avenue.": "129478a5b4a9.mp3","She comes from Guadalajara with her brother.": "74c8cde04fd7.mp3","If I had a car, I would take you.": "b04abbd0005b.mp3","While I was studying, my brother was playing.": "ab38fa16b444.mp3","He acts as if he knew everything.": "58a8d848a396.mp3","How many brothers and sisters do you have?": "5c7b8efb1198.mp3","Did he come to class yesterday?": "881cdd8fd368.mp3"};
+var AU=new Audio();AU.preload='auto';
 // [lección, base, nota, [[emoji,en,es]...], [retoES, retoEN], fuente]
 var SETS=[
 [27,'WAY TOO …','demasiado (de más, exagerado)',[['🍽️',"I'm way too full.",'Estoy demasiado lleno.'],['🔥',"It's way too hot.",'Hace demasiado calor.'],['🥶',"It's way too cold.",'Hace demasiado frío.'],['🧠',"You're way too smart.",'Eres demasiado inteligente.']],['Estoy demasiado cansado.',"I'm way too tired."],'@camperezn'],
@@ -91,7 +96,14 @@ function score(v){var n=v.name||'';if(!/^en/i.test(v.lang||''))return 0;
 function voice(){var vs=(window.speechSynthesis&&speechSynthesis.getVoices())||[];var s=ls('ql_guia_voice_v2')||'';
   if(s){for(var i=0;i<vs.length;i++)if(vs[i].name+'|'+vs[i].lang===s)return vs[i]}
   return vs.slice().sort(function(a,b){return score(b)-score(a)})[0]||null}
-function speak(t,btn){if(!window.speechSynthesis)return;speechSynthesis.cancel();
+function done(btn){if(btn)btn.classList.remove('play')}
+function speak(t,btn){var f=AUDIO[t];
+  try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}
+  if(f){try{AU.pause();AU.src='audio/frases/'+f;AU.currentTime=0;if(btn)btn.classList.add('play');
+    AU.onended=function(){done(btn)};
+    var p=AU.play();if(p&&p.catch)p.catch(function(){done(btn);tts(t,btn)});return}catch(e){}}
+  tts(t,btn)}
+function tts(t,btn){if(!window.speechSynthesis)return;speechSynthesis.cancel();
   t=t.replace(/^"[^"]*"\s*→\s*/,'').replace(/→/g,',');
   var u=new SpeechSynthesisUtterance(t),v=voice();u.lang=v?v.lang:'en-US';u.rate=.92;u.pitch=1;if(v)u.voice=v;
   if(btn){btn.classList.add('play');u.onend=u.onerror=function(){btn.classList.remove('play')}}
@@ -109,22 +121,22 @@ function render(){var L=lesson(),feed=document.getElementById('feed');
   feed.innerHTML=list.map(function(x,k){var s=x[0],i=x[1],id='s'+i,d=st.done[id];
     return '<section class="card" data-i="'+i+'"><div class="in"><div class="base"><div class="tag">'+(/^Lecci/.test(s[5])?'Lección '+s[0]:esc(s[5])+' · Lección '+s[0])+'</div><span class="cnt">'+(k+1)+'/'+list.length+'</span><h2>'+esc(s[1])+'</h2><p>'+esc(s[2])+'</p></div><ul>'+
       s[3].map(function(e,j){return '<li><span class="em">'+e[0]+'</span><span class="tx"><b>'+esc(e[1])+'</b><small>'+esc(e[2])+'</small></span><button class="au" data-t="'+i+'.'+j+'" aria-label="Escuchar">'+ic('i-volume')+'</button></li>'}).join('')+
-      '</ul><div class="reto"><div class="rbox"><div class="h">Reto 3·2·1</div><div class="es">¿Cómo dirías… <b>'+esc(s[4][0].replace(/[.]$/,''))+'</b>?</div><div class="cd"></div><div class="ans"><span>'+esc(s[4][1])+'</span><button class="au" data-r="'+i+'" aria-label="Escuchar">'+ic('i-volume')+'</button></div><div class="row"><button class="btn go">'+ic('i-stopwatch')+'<span>Empezar 3-2-1</span></button><button class="btn ok'+(d?' done':'')+'" data-d="'+id+'">'+ic(d?'i-circle-check':'i-square')+'<span>¡Lo dije!</span></button></div></div>'+(k===0?'<div class="hint">desliza hacia arriba ↑</div>':'')+'</div></div></section>'}).join('');
+      '</ul><div class="reto"><div class="rbox"><div class="h">Reto 3·2·1</div><div class="es">¿Cómo dirías… <b>'+esc(s[4][0].replace(/[.]$/,''))+'</b>?</div><div class="cd"></div><div class="ans"><span>'+esc(s[4][1])+'</span><button class="au" data-r="'+i+'" aria-label="Escuchar">'+ic('i-volume')+'</button></div><div class="tap">toca la bocina para escucharla</div><div class="row"><button class="btn go">'+ic('i-stopwatch')+'<span>Empezar 3-2-1</span></button><button class="btn ok'+(d?' done':'')+'" data-d="'+id+'">'+ic(d?'i-circle-check':'i-square')+'<span>¡Lo dije!</span></button></div></div>'+(k===0?'<div class="hint">desliza hacia arriba ↑</div>':'')+'</div></div></section>'}).join('');
   feed.scrollTop=0}
 document.getElementById('feed').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
   if(b.dataset.t){var p=b.dataset.t.split('.');speak(SETS[+p[0]][3][+p[1]][1],b);return}
-  if(b.dataset.r){speak(SETS[+b.dataset.r][4][1],b);return}
+  if(b.dataset.r){b.classList.remove('big');speak(SETS[+b.dataset.r][4][1],b);return}
   if(b.dataset.d){var id=b.dataset.d;if(st.done[id])delete st.done[id];else st.done[id]=Date.now();save();
     b.classList.toggle('done',!!st.done[id]);b.querySelector('use').setAttribute('href','#'+(st.done[id]?'i-circle-check':'i-square'));return}
   if(b.classList.contains('go')){var box=b.closest('.rbox'),cd=box.querySelector('.cd'),an=box.querySelector('.ans'),i=+b.closest('.card').dataset.i;
     an.classList.remove('on');b.disabled=true;var n=3;
     (function tick(){if(n>0){cd.textContent=n;cd.classList.remove('go');void cd.offsetWidth;cd.classList.add('go');n--;setTimeout(tick,1000)}
-      else{cd.classList.remove('go');an.classList.add('on');b.disabled=false;b.querySelector('span').textContent='Otra vez';speak(SETS[i][4][1],an.querySelector('.au'))}})()}});
+      else{cd.classList.remove('go');an.classList.add('on');b.disabled=false;b.querySelector('span').textContent='Otra vez';an.querySelector('.au').classList.add('big')}})()}});
 document.getElementById('fL').onclick=function(){mode='les';st.mode=mode;save();render()};
 document.getElementById('fA').onclick=function(){mode='all';st.mode=mode;save();render()};
 var lastL=lesson();
 window.addEventListener('storage',function(e){if(e.key==='ql_app_leccion_v1'&&lesson()!==lastL){lastL=lesson();render()}});
-window.__frases={refresh:function(){if(lesson()!==lastL){lastL=lesson();render()}},stop:function(){try{speechSynthesis.cancel()}catch(e){}},count:SETS.length};
+window.__frases={refresh:function(){if(lesson()!==lastL){lastL=lesson();render()}},stop:function(){try{AU.pause();speechSynthesis.cancel()}catch(e){}},count:SETS.length};
 render();
 })();
 </script></body></html>
