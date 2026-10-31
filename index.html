@@ -181,12 +181,12 @@ function when(which,cb,tries){tries=tries||0;var a=api(which);
   if(tries>200)return;setTimeout(function(){when(which,cb,tries+1)},60)}
 function hideLd(f){f.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true})}
 function ensure(which){if(loaded[which])return;loaded[which]=true;
-  if(which==='libro5'){hideLd(fL5);fL5.src='app/libro5a/index.html?v=46650b3a9d';return}
+  if(which==='libro5'){hideLd(fL5);fL5.src='app/libro5a/index.html?v=46650b3a9df';return}
   if(which==='juegos'){hideLd(fJ);fJ.src='app/juegos.html?v=3c3e4a5d51';return}
   if(which==='guia5'){hideLd(fG5);fG5.src='app/guia5a.html?v=46650b3a9d';return}
   if(which==='frases'){fF.src='app/frases.html?v=e539f8e773';fF.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true});return}
   var f=which==='libro'?fL:fG;
-  f.src=which==='libro'?'app/libro/index.html?v=e539f8e773':'app/guia.html?app=1&v=e539f8e773';
+  f.src=which==='libro'?'app/libro/index.html?v=e539f8e773f':'app/guia.html?app=1&v=e539f8e773';
   f.addEventListener('load',function(){document.getElementById('loading').style.display='none'},{once:true})}
 var cur=null;
 function renderChips(t){var c=document.getElementById('chips');var T=TABS[t];
