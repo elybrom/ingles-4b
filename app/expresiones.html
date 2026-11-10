@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inglés · Expresiones como nativo</title>
+<meta name="theme-color" content="#FBF4EE">
+<style>
+@font-face{font-family:'Fraunces';src:url(fonts/fraunces.woff2) format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Fraunces';src:url(fonts/fraunces-i.woff2) format('woff2');font-weight:300 800;font-style:italic;font-display:swap}
+@font-face{font-family:'DM Sans';src:url(fonts/dmsans.woff2) format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Sans';src:url(fonts/dmsans-i.woff2) format('woff2');font-weight:300 800;font-style:italic;font-display:swap}
+@font-face{font-family:'Caveat';src:url(fonts/caveat.woff2) format('woff2');font-weight:400 700;font-display:swap}
+:root{
+  --paper:#FBF4EE;--paper2:#F7ECE4;--card:#FFFDFB;--sand:#F5E3DF;--stone:#E9CFCB;
+  --taupe:#9C7F86;--ink:#2E2230;--ink2:#4A3A4C;--muted:#8E7884;--line:#F0DEDA;
+  --blush:#FBE4E6;--pink:#F6CBD3;--pinkd:#D46F8A;--rose:#D46F8A;--amber:#C2577A;
+  --green:#5E8C6A;--ok:#DDEFE0;--red:#C0485F;--red-soft:#FCE4E8;
+  --serif:'Fraunces',Georgia,serif;--font:'DM Sans',system-ui,-apple-system,sans-serif;--script:'Caveat',cursive;
+  --shadow:0 1px 2px rgba(120,60,80,.06),0 12px 30px -14px rgba(160,70,100,.28);
+  --radius:22px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;font-family:var(--font);color:var(--ink);background:var(--paper);letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+.sk{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+#app{position:absolute;inset:0;display:flex;flex-direction:column;min-width:0}
+#top{flex:0 0 auto;padding:10px 14px 6px;background:rgba(251,244,238,.92);backdrop-filter:blur(10px)}
+#top .row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+#top h1{margin:0;font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.05;letter-spacing:-.03em}
+#top h1 i{display:block;font-family:var(--script);font-style:normal;font-weight:600;color:var(--amber);font-size:24px;letter-spacing:0;white-space:nowrap;margin-top:1px}
+#top .sub{margin:2px 0 0;font:600 15px/1.2 var(--script);color:var(--amber)}
+#meta{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+#prog{font:700 12px/1 var(--font);color:var(--amber);background:var(--blush);border-radius:999px;padding:7px 10px;white-space:nowrap}
+.tog{display:flex;align-items:center;gap:6px;border:1.5px solid #EBCFCC;background:#FFFDFB;border-radius:999px;padding:6px 10px;font:700 12px/1 var(--font);color:var(--ink)}
+.tog input{accent-color:var(--amber);width:16px;height:16px;margin:0}
+#chips{flex:0 0 auto;display:flex;gap:6px;overflow-x:auto;padding:4px 14px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#chips::-webkit-scrollbar{display:none}
+#chips button{flex:0 0 auto;border:1.5px solid #EBCFCC;background:#FFFDFB;border-radius:999px;padding:7px 13px;font:600 13px/1 var(--font);color:var(--ink);min-height:36px}
+#chips button.on{background:var(--ink);color:#FFF6F3;border-color:var(--ink)}
+#stage{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 14px 18px;-webkit-overflow-scrolling:touch}
+.card{background:var(--card);border:1px solid #F0D9D6;border-radius:24px;box-shadow:var(--shadow);margin:0 0 12px;overflow:hidden}
+.card .hd{display:flex;align-items:center;gap:10px;width:100%;padding:14px 12px 14px 16px;border:0;background:none;text-align:left;color:inherit;font:inherit;cursor:pointer}
+.card .hd .tx{flex:1;min-width:0}
+.card .hd h2{margin:0;font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.15;letter-spacing:-.02em;overflow-wrap:anywhere}
+.card .hd p{margin:3px 0 0;font:600 16px/1.2 var(--script);color:var(--amber)}
+.badge{display:inline-block;font:700 9.5px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:var(--blush);border-radius:999px;padding:4px 8px;margin-bottom:5px}
+.au{flex:0 0 auto;border:0;background:var(--blush);color:var(--amber);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(194,87,122,.35)}
+.au.play, .au.say{background:var(--amber);color:#fff;animation:ring 1.1s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(194,87,122,.5)}100%{box-shadow:0 0 0 12px rgba(194,87,122,0)}}
+.au:active{transform:scale(.92)}
+.chev{flex:0 0 auto;width:18px;height:18px;color:var(--taupe);transition:transform .25s}
+.card.open .chev{transform:rotate(180deg)}
+.mark{flex:0 0 auto;width:18px;height:18px;color:var(--green);opacity:0}
+.card.heard .mark{opacity:1}
+.body{display:none;padding:0 16px 16px;border-top:1.5px dashed var(--pink)}
+.card.open .body{display:block}
+.box{margin-top:12px;background:linear-gradient(140deg,#FBE4E6 0%,#F7ECE4 70%);border-radius:16px;padding:12px 14px}
+.box.sage{background:linear-gradient(140deg,#E3F0E4,#F7ECE4 70%)}
+.box .k{font:700 10.5px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.box .f{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.3;margin:0 0 6px;overflow-wrap:anywhere}
+.box .n,.box .s{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+.phon{font-family:var(--serif);font-style:italic;font-weight:500;font-size:20px;line-height:1.25;margin:0 0 6px;color:var(--amber);overflow-wrap:anywhere}
+.ex{margin:12px 0 0;padding:0;list-style:none}
+.ex li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #F3E4E1}
+.ex .tx{flex:1;min-width:0}
+.ex b{display:block;font-weight:600;font-size:15px;line-height:1.3;overflow-wrap:anywhere}
+.ex small{display:block;color:var(--muted);font-size:13px;line-height:1.35;margin-top:2px;overflow-wrap:anywhere}
+.credit{margin:8px 0 20px;padding:14px 16px;background:var(--card);border:1px dashed #EBCFCC;border-radius:20px;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+.credit a{color:var(--amber);font-weight:600;text-decoration:none;border-bottom:1px solid var(--pink)}
+#dock{flex:0 0 auto;display:flex;gap:8px;padding:8px 14px 10px;background:rgba(255,253,251,.96);border-top:1px solid var(--line)}
+#dock button{flex:1;border:0;border-radius:999px;padding:12px 10px;font:600 14.5px/1 var(--font);min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px}
+#dock button.on{background:var(--ink);color:#FFF6F3;box-shadow:0 6px 16px -8px rgba(46,34,48,.55)}
+#dock button:not(.on){background:#FFFDFB;color:var(--ink);border:1.5px solid var(--ink)}
+/* quiz */
+#qz{display:none;padding-bottom:8px}
+body.mode-quiz #list, body.mode-quiz #chips, body.mode-quiz .credit{display:none}
+body.mode-quiz #qz{display:block}
+.qbar{height:10px;background:var(--sand);border-radius:9px;overflow:hidden;margin:0 0 14px}
+.qbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--amber));transition:width .4s}
+.qcard{background:var(--card);border:1px solid #F0D9D6;border-radius:24px;box-shadow:var(--shadow);padding:18px 16px}
+.qcard .num{font:700 10.5px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.qcard h2{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.2;margin:10px 0 6px;letter-spacing:-.02em;overflow-wrap:anywhere}
+.qcard .hint{font:600 16px/1.3 var(--script);color:var(--amber);margin:0 0 14px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts button{border:1.5px solid #EBCFCC;background:#FFFDFB;border-radius:16px;padding:12px 14px;text-align:left;font:600 15px/1.35 var(--font);color:var(--ink);min-height:48px;overflow-wrap:anywhere}
+.opts button.ok{background:var(--ok);border-color:var(--green);animation:pop .35s}
+.opts button.no{background:var(--red-soft);border-color:var(--red);animation:shake .4s}
+@keyframes pop{50%{transform:scale(1.03)}}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.blank{display:flex;flex-direction:column;gap:10px}
+.blank p.sen{margin:0 0 4px;font-family:var(--serif);font-size:20px;line-height:1.35;font-weight:500;overflow-wrap:anywhere}
+.blank p.sen em{font-style:normal;color:var(--amber);border-bottom:2px dashed var(--pink);padding:0 4px}
+.blank input{width:100%;border:1.5px solid #EBCFCC;background:#FFFDFB;border-radius:16px;padding:12px 14px;font:600 16px/1.3 var(--font);color:var(--ink)}
+.blank input:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(194,87,122,.18)}
+.blank input.ok{border-color:var(--green);background:var(--ok)}
+.blank input.no{border-color:var(--red);background:var(--red-soft)}
+.fb{display:none;margin-top:12px;padding:12px 14px;border-radius:16px;font-size:14.5px;line-height:1.4}
+.fb.on{display:block}
+.fb.ok{background:var(--ok);color:#2A4A32}
+.fb.no{background:var(--red-soft);color:#7A2434}
+.fb b{display:block;margin-bottom:4px}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{border:0;background:var(--ink);color:#FFF6F3;border-radius:999px;padding:12px 18px;font:600 14.5px/1 var(--font);min-height:44px;box-shadow:0 6px 16px -8px rgba(46,34,48,.55);display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:active{transform:scale(.96)}
+button[hidden],[hidden]{display:none!important}
+.btn.sec{background:#FFFDFB;color:var(--ink);border:1.5px solid var(--ink);box-shadow:none}
+.done{text-align:center;padding:10px 4px}
+.done h2{font-family:var(--serif);font-size:28px;margin:8px 0 4px}
+.done .big{font-family:var(--serif);font-style:italic;font-size:48px;color:var(--amber);margin:8px 0}
+.done p{color:var(--ink2);font-size:15px;line-height:1.4}
+@media (max-width:400px){
+  #top h1{font-size:22px}
+  .card .hd h2{font-size:18.5px}
+  .qcard h2{font-size:20px}
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4.6 11.6C7.2 13.8 8.3 15.4 9.9 17.2M5 12.2C6.6 13.3 8.2 14.8 9.9 17.2M10.5 16.8C12.9 13.2 16.3 10.7 20 7.1M10.1 17C13.5 13.6 17.2 9.7 19.8 6.9"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18.1 5.9C14.2 9.4 11.2 13.7 6.5 17.5M18.1 6.2C14.6 9.5 11 13.3 6.2 17.9M6.1 6.1C9.5 10 13.5 13.1 17.6 17.7M6.3 5.9C9.1 9.1 12 11.8 17.9 18"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M15 8C18 10.3 17.2 14.2 14.8 16.5M15.3 8.3C17.4 9.8 18.1 14.4 15.2 16.3M17.7 5C21.6 8.9 21.9 15.6 17.5 19.1M17.5 4.8C22.1 8.1 22.2 15.8 17.3 19.4M6.1 15C5.5 15.1 5.1 15 4.2 15.1M5.9 15C5.2 15 4.4 15 4.1 15M4 15C3.3 15.5 2.7 14.3 3 13.9M4.5 14.5C3.8 15.3 2.9 15.2 3.3 14.3M2.7 13.7C2.8 13.2 3.3 12 2.8 10.4M3.2 13.8C3.1 12.4 2.9 11.1 3.1 10.1M3 10C2.5 9.6 3.8 8.8 4.5 8.7M3.4 9.7C3.3 9.1 3.7 8.7 3.7 9.6M4.1 9.1C4.6 9.1 5.6 9.1 6 8.9M3.9 9C4.5 9 5.2 9.1 6 9.1M6.2 9.1C7.5 7 8.7 5.4 9.3 4.6M6 9C7 7.6 8.3 6.1 9.4 4.6M9.5 4.5C9.7 4.1 10.7 3.6 10.4 4.2M9.6 4.6C9.6 3.4 10.6 3.6 10.3 4.5M10.9 4.4C10.6 5 11.2 4.6 10.9 5.1M10.5 3.9C10.9 4.8 10.8 4.8 11.2 4.5M10.6 4.6C11.3 9.4 11.3 13.7 10.6 18.7M11 5C11.3 8.6 11.1 12.8 11.1 19.2M11 19C11.1 19.8 10.4 20.6 9.6 19.8M10.8 19C11.3 19.2 11 20.3 10.5 20M9.9 19.9C9.3 20.3 9.9 19.6 9.7 19.1M9.9 19.8C9.2 19.4 9.6 19.3 9.2 19.2M9.6 19.7C8.5 17.9 7.2 16.5 5.6 14.6M9.3 19.3C8.5 18.4 7.7 17.2 5.8 15"/></symbol>
+<symbol id="i-player-play" viewBox="0 0 24 24"><path d="M6.5 4.2C6.6 7.5 7.1 10.4 7.2 20.1M6.9 3.9C6.8 9.5 7.2 14.7 7.2 20.2M7.5 20.4C12.2 16.7 16.7 14.6 19.7 11.7M7 20.1C12.3 17 17.5 13.8 20.3 12.1M19.7 12.2C15.8 9.5 12.2 7.7 6.7 4.3M19.8 12.1C15.5 9.6 11.2 6.6 7.2 3.9"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11C19.5 5.1 12.2 2.3 6.7 6.1M19.6 10.6C18.7 4.8 11.5 2.1 7 5.5M7 5.7C6.1 6.9 5.4 7.6 4.9 8.5M7.4 6C6.3 6.1 5 7.5 4.7 9.4M3.7 4.6C4.3 6.2 4.2 6.7 3.7 9.2M3.9 5.1C3.9 6.2 4 7.1 4.2 8.9M4 8.9C5 8.6 5.7 9.4 8.2 9.1M3.8 9.1C5.2 9 6.3 9.1 7.9 9.2M4 13C4.4 19.5 12.5 22.5 16.7 18.2M4.2 13.1C4.6 18.9 12.5 22.4 17.5 18.2M17 18.3C18.3 17 19.1 16.5 19 14.9M16.9 18.7C17.6 17.1 19.4 16.5 19.2 15.2M19.7 18.6C19.8 17.5 19.7 16.4 20.3 14.7M19.9 18.9C20.2 17.4 20 16.1 19.8 15M19.8 14.7C18.9 15.1 18 14.7 16.2 15.2M20.1 15C18.5 14.9 17.1 15.1 15.9 15"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M16 18C17.3 17.8 18 19.2 18.1 19.5M16.4 18.2C16.5 17.6 17.4 18.4 17.4 20.6M18 20C18.3 19.1 18.4 18.4 20 17.5M18.3 20.4C18.2 18.5 19.3 18.2 20.6 17.6M20 18C18.4 17.7 18.2 17.5 17.7 15.9M19.5 18.5C18.5 17.4 18.6 17.2 17.9 15.7M18 16C17.6 16.9 17.2 18 16.5 18.3M18.5 15.8C18.1 16.5 17.6 17.7 16 17.6M16 6C16.8 6.4 18.4 7.4 18.2 8.3M16.1 6.5C16.8 6.4 17.9 6.8 17.5 8.4M18 8C18 7.1 18.9 6 20 6.3M18.1 8.2C18.4 6.4 18.7 6.1 19.9 5.9M20 6C18.8 6.2 18.4 5.6 17.6 4.1M20.3 5.6C18.9 6.6 18.4 5.5 18 4M18 4C18.3 5.6 16.6 6.4 16.1 6.3M18.2 3.8C18.3 5.6 16.8 6 16.6 5.7M9 18C9.4 15.1 11.8 12.1 15.3 12.2M9.3 17.8C9.4 14.4 11.5 12.5 14.9 12M15 12C11.4 12.1 8.6 9.3 9.5 5.6M15.2 12.3C12 11.6 8.9 9.6 9.5 5.4M9 6C8.7 9.5 6.7 11.5 3.1 12.3M8.7 6.5C8.5 9.8 6.2 11.6 2.6 12.3M3 12C6.4 12.4 8.8 14.3 9 17.6M2.9 12.4C5.9 12.3 8.9 14.1 8.5 18.4"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M11.6 17.3C10.5 18.3 9.4 19.6 6.2 21.4M12.2 17.9C9.6 19.2 7.1 20.4 5.7 21.2M5.6 20.6C6.5 19.2 6.3 17.9 6.8 14.2M5.6 21.1C6 19.5 6.2 17.3 6.8 14.2M6.6 14.1C5.6 13.1 4.6 11.6 1.5 9M6.8 13.9C5 12.1 3.4 10.4 1.8 9.1M1.8 9.4C3.5 9 5.2 8.5 8.7 7.9M2.1 9.1C4.5 9.1 7.6 8.6 8.7 8.2M9.2 8.3C9.7 6.2 10.4 4.4 12.4 2M8.8 8.4C9.7 6.2 10.9 4.3 11.7 2.1M12.1 2.3C12.5 4.3 13.8 6.2 15.6 7.8M11.8 1.8C12.9 3.5 13.6 4.9 15.2 8.3M15 8.7C17.2 8.7 18.8 9 21.8 9.8M15.2 8.4C16.8 8.7 18.8 8.8 21.9 9.4M21.9 9.3C20.9 11 18.8 12.2 17.3 14.4M22.2 9.1C20.5 10.7 18.5 12.2 16.8 14.1M16.5 14.3C16.8 15.5 18 17.3 18.1 21M16.9 14.2C17.1 16.5 17.7 19 18.2 20.9M18.4 20.5C15.5 19.6 13.9 18.9 12.4 17.5M18 21.3C16.9 20.3 15.3 19.6 11.8 17.8"/></symbol>
+<symbol id="i-circle-check" viewBox="0 0 24 24"><path d="M3 12C2.5 18.9 10.5 22.9 16.2 19.9M3.2 11.9C3.4 18.8 10.1 23.6 17.1 20.1M16.5 19.8C19.2 18 20.6 15.7 21.2 12.4M17 20C18.7 18.6 21 15.8 21.2 12M21 12C21 5.4 13.8 0.7 7.7 3.8M20.6 11.5C20.8 4.9 13.1 1.1 7.4 3.7M7.5 4.2C5 6.3 3.5 9.2 2.7 11.7M7.7 4C4.8 5.3 2.8 8.4 3.4 11.8M9 12.1C9.2 12.3 10.2 12.9 11.2 13.7M9.1 12C9.5 12.5 10.1 12.9 11 14.1M10.6 14.5C11.9 12.8 13.3 11.6 15.3 10.3M11.2 14.1C12.6 12.7 13.7 11 14.8 10.2"/></symbol>
+</defs></svg>
+<div id="app">
+  <header id="top">
+    <div class="row">
+      <div>
+        <h1>Expresiones <i>como nativo</i></h1>
+        <p class="sub">Para sonar natural, no de libro</p>
+      </div>
+      <div id="meta">
+        <label class="tog"><input type="checkbox" id="slow"> Lento</label>
+        <span id="prog" title="Expresiones escuchadas">0 / 24</span>
+      </div>
+    </div>
+  </header>
+  <div id="chips" role="tablist" aria-label="Grupos"></div>
+  <main id="stage">
+    <div id="list"></div>
+    <p class="credit">La primera, <b>I should've known</b>, nació de un reel de Teacher Pablo.
+    <a href="https://www.instagram.com/reel/DdG5UeLlJ0T/" target="_blank" rel="noopener noreferrer">Ver el reel</a>.
+    Aquí están esas contracciones del pasado y otras frases que se oyen todo el tiempo.</p>
+    <div id="qz"></div>
+  </main>
+  <nav id="dock" aria-label="Modo">
+    <button type="button" id="dExp" class="on">Tarjetas</button>
+    <button type="button" id="dQz">Practicar</button>
+  </nav>
+</div>
+<script>
+window.__EXPR_GROUPS=[{"id": "deber", "label": "Debí haber"}, {"id": "poder", "label": "Habría podido"}, {"id": "seguro", "label": "Seguro que"}, {"id": "diario", "label": "Del día a día"}, {"id": "habla", "label": "En el habla"}];
+window.__EXPR_ITEMS=[{"id": "shouldve-known", "group": "deber", "en": "I should've known", "es": "Debí haberlo sabido", "star": true, "formula": "I + should + have + known", "formulaNote": "Should es el modal de consejo. Para hablar del pasado, después del modal va have + participio. En el habla casi siempre se contrae: should have → should've.", "phon": "ai SHÚ-dəv NOUN", "silent": "La L de should no suena. La K de known tampoco. Known es el participio de know.", "examples": [["I should've known the meeting would run late.", "Debí haber sabido que la junta se iba a alargar."], ["I should've known it was too good to be true.", "Debí haber sabido que era demasiado bueno para ser verdad."]], "accept": ["i should've known", "i should have known", "i shouldve known"]}, {"id": "shouldnt-have", "group": "deber", "en": "I shouldn't have", "es": "No debí haber…", "formula": "I + should + not + have + participio", "formulaNote": "Es el negativo de should've. Se usa para arrepentirse de algo que ya pasó. En el habla: shouldn't have, casi SHÚ-dnt əv.", "phon": "ai SHÚ-dnt əv", "silent": "La L de should no suena. have a menudo se reduce a əv.", "examples": [["I shouldn't have said that in the meeting.", "No debí haber dicho eso en la junta."], ["I shouldn't have eaten so much.", "No debí haber comido tanto."]], "accept": ["i shouldn't have", "i should not have", "i shouldnt have"]}, {"id": "couldve", "group": "poder", "en": "I could've", "es": "Pude haber… / Habría podido…", "formula": "I + could + have + participio", "formulaNote": "Habla de una posibilidad en el pasado que no ocurrió. La contracción natural es could've.", "phon": "ai CÚ-dəv", "silent": "La L de could no suena.", "examples": [["I could've helped you with that report.", "Pude haberte ayudado con ese reporte."], ["You could've told me sooner.", "Pudiste habérmelo dicho antes."]], "accept": ["i could've", "i could have", "i couldve"]}, {"id": "wouldve", "group": "poder", "en": "I would've", "es": "Yo habría…", "formula": "I + would + have + participio", "formulaNote": "Se usa para decir lo que habrías hecho (a menudo con but o con un if). En el habla: would've.", "phon": "ai WÚ-dəv", "silent": "La L de would no suena.", "examples": [["I would've called, but my phone died.", "Habría llamado, pero se me murió el celular."], ["I would've gone if I had known.", "Habría ido si lo hubiera sabido."]], "accept": ["i would've", "i would have", "i wouldve"]}, {"id": "wouldnt-have", "group": "poder", "en": "I wouldn't have", "es": "Yo no habría…", "formula": "I + would + not + have + participio", "formulaNote": "Es el negativo de would've: lo que no habrías hecho. En el habla: wouldn't have, casi WÚ-dnt əv.", "phon": "ai WÚ-dnt əv", "silent": "La L de would no suena. have se reduce a əv.", "examples": [["I wouldn't have done that.", "Yo no habría hecho eso."], ["I wouldn't have signed it without reading it.", "No lo habría firmado sin leerlo."]], "accept": ["i wouldn't have", "i would not have", "i wouldnt have"]}, {"id": "mustve", "group": "seguro", "en": "I must've", "es": "Debo de haber… / Seguro que…", "formula": "I + must + have + participio", "formulaNote": "No es obligación: es una conclusión sobre el pasado. Si ves la evidencia, dices must've. En el habla: MÁS-təv.", "phon": "ai MÁS-təv", "silent": "have se reduce a təv. La t de must a veces se suaviza.", "examples": [["I must've left my keys at the office.", "Debo de haberme dejado las llaves en la oficina."], ["She must've been tired after class.", "Seguro que estaba cansada después de la clase."]], "accept": ["i must've", "i must have", "i mustve"]}, {"id": "mightve", "group": "seguro", "en": "It might've", "es": "Puede que haya… / Tal vez…", "formula": "It + might + have + participio", "formulaNote": "Es una posibilidad, no una certeza. Menos seguro que must've. En el habla: might've.", "phon": "it MÁI-təv", "silent": "have se reduce a təv.", "examples": [["It might've been a mistake.", "Puede que haya sido un error."], ["I might've forgotten to send the email.", "Puede que se me haya olvidado mandar el correo."]], "accept": ["it might've", "it might have", "it mightve"]}, {"id": "im-used-to", "group": "diario", "en": "I'm used to", "es": "Estoy acostumbrada a…", "formula": "I am used to + sustantivo o verbo en -ing", "formulaNote": "Habla de una costumbre actual: ya no te extraña. Ojo: used se pronuncia IUST (con s sorda), no iuzd. Después va -ing, no el verbo suelto.", "phon": "aim IUST tu", "silent": "used suena IUST (la s es sorda, como en sorry). No suena como el used de I used a pen.", "examples": [["I'm used to waking up early.", "Estoy acostumbrada a madrugar."], ["I'm used to speaking English in class.", "Estoy acostumbrada a hablar inglés en clase."]], "accept": ["i'm used to", "im used to", "i am used to"]}, {"id": "i-used-to", "group": "diario", "en": "I used to", "es": "Solía… / Antes yo…", "formula": "I used to + verbo base", "formulaNote": "Habla de una costumbre del pasado que ya no haces. Se parece a I'm used to, pero no es lo mismo: aquí va el verbo en base (live, study), no en -ing.", "phon": "ai IUST tu", "silent": "used también suena IUST, con s sorda.", "examples": [["I used to live in Monterrey.", "Yo vivía / solía vivir en Monterrey."], ["I used to study at night.", "Antes estudiaba en la noche."]], "accept": ["i used to"]}, {"id": "id-rather", "group": "diario", "en": "I'd rather", "es": "Preferiría…", "formula": "I would rather + verbo base", "formulaNote": "I'd es I would. Para preferir una cosa sobre otra: I'd rather A than B. El negativo es I'd rather not.", "phon": "aid RÁ-dər", "silent": "La l de would no aparece: I'd suena aid.", "examples": [["I'd rather stay home tonight.", "Preferiría quedarme en casa esta noche."], ["I'd rather study now than later.", "Preferiría estudiar ahora y no después."]], "accept": ["i'd rather", "id rather", "i would rather"]}, {"id": "im-about-to", "group": "diario", "en": "I'm about to", "es": "Estoy a punto de…", "formula": "I am about to + verbo base", "formulaNote": "Algo va a pasar en unos segundos o minutos, no en un futuro lejano. El pasado es I was about to.", "phon": "aim ə-BÁUT tu", "silent": "about se oye ə-BÁUT; la a del inicio casi desaparece.", "examples": [["I'm about to leave.", "Estoy a punto de irme."], ["I'm about to send the email.", "Estoy a punto de mandar el correo."]], "accept": ["i'm about to", "im about to", "i am about to"]}, {"id": "its-up-to-you", "group": "diario", "en": "It's up to you", "es": "Tú decides / Depende de ti", "formula": "It is up to + persona", "formulaNote": "Cedes la decisión. También: It's up to me, It's up to the client.", "phon": "its AP tu iu", "silent": "up suena AP, no «iop». to a menudo se reduce a tu.", "examples": [["It's up to you. You decide.", "Tú decides. La decisión es tuya."], ["It's up to the client now.", "Ahora depende del cliente."]], "accept": ["it's up to you", "its up to you", "it is up to you"]}, {"id": "supposed-to", "group": "diario", "en": "I was supposed to", "es": "Se suponía que yo… / Yo debía…", "formula": "I was supposed to + verbo base", "formulaNote": "Habla de un plan o una obligación que no se cumplió (o aún no). El presente es I'm supposed to.", "phon": "ai woz sə-PÓUST tu", "silent": "En supposed, la d suena casi como T: PÓUST, no «sapóusd».", "examples": [["I was supposed to call her yesterday.", "Se suponía que yo la llamaba ayer."], ["We were supposed to start at nine.", "Se suponía que empezábamos a las nueve."]], "accept": ["i was supposed to"]}, {"id": "id-better", "group": "diario", "en": "I'd better", "es": "Será mejor que yo…", "formula": "I had better + verbo base", "formulaNote": "Es un consejo urgente, más fuerte que should: si no lo haces, hay consecuencia. I'd es I had, no I would. El negativo es I'd better not.", "phon": "aid BÉ-tər", "silent": "had se reduce a 'd: aid. No se oye la h.", "examples": [["I'd better go, it's getting late.", "Será mejor que me vaya, se está haciendo tarde."], ["I'd better review this before class.", "Será mejor que revise esto antes de la clase."]], "accept": ["i'd better", "id better", "i had better"]}, {"id": "cant-help", "group": "diario", "en": "I can't help it", "es": "No lo puedo evitar", "formula": "I can't help it  ·  I can't help + verbo en -ing", "formulaNote": "No es pedir ayuda: significa que algo se te sale solo, no lo controlas.", "phon": "ai cant HELP it", "silent": "can't suena cant (la a es como en cat). help se oye claro, con H.", "examples": [["I can't help it, I laugh every time.", "No lo puedo evitar, me río siempre."], ["I can't help thinking about the exam.", "No puedo evitar pensar en el examen."]], "accept": ["i can't help it", "i cant help it", "i cannot help it"]}, {"id": "looking-forward", "group": "diario", "en": "I'm looking forward to", "es": "Tengo ganas de… / Lo espero con ilusión", "formula": "I am looking forward to + sustantivo o verbo en -ing", "formulaNote": "to aquí es preposición, por eso va -ing: looking forward to seeing you, no to see you.", "phon": "aim LÚ-kin FÓR-wərd tu", "silent": "La w de forward se oye suave. to se reduce a tu.", "examples": [["I'm looking forward to the weekend.", "Tengo ganas de que llegue el fin de semana."], ["I'm looking forward to seeing you.", "Espero con ilusión verte."]], "accept": ["i'm looking forward to", "im looking forward to", "i am looking forward to"]}, {"id": "turns-out", "group": "diario", "en": "It turns out", "es": "Resulta que…", "formula": "It turns out (that) + frase", "formulaNote": "Se usa cuando descubres la verdad o el desenlace. En pasado: It turned out.", "phon": "it TURNS aut", "silent": "out suena aut (como «áu»). La s de turns es sorda, Z no.", "examples": [["It turns out she was right.", "Resulta que ella tenía razón."], ["It turns out the office is closed today.", "Resulta que la oficina está cerrada hoy."]], "accept": ["it turns out"]}, {"id": "ended-up", "group": "diario", "en": "I ended up", "es": "Terminé… / Al final…", "formula": "I ended up + verbo en -ing (o adjetivo)", "formulaNote": "Cuentas el resultado final, a menudo distinto de lo que planeabas.", "phon": "ai ÉN-ded ap", "silent": "up suena ap. La ed de ended suena id: ÉN-did / ÉN-ded.", "examples": [["I ended up working late.", "Terminé trabajando hasta tarde."], ["We ended up taking a taxi.", "Al final tomamos un taxi."]], "accept": ["i ended up"]}, {"id": "as-far-as", "group": "diario", "en": "As far as I know", "es": "Que yo sepa…", "formula": "As far as I know", "formulaNote": "Suaviza lo que dices: es lo que sabes, pero podría no ser toda la historia. También: as far as I remember.", "phon": "as FAR as ai NOU", "silent": "La K de know no suena: NOU, no «knou».", "examples": [["As far as I know, class starts at eight.", "Que yo sepa, la clase empieza a las ocho."], ["As far as I know, he already left.", "Que yo sepa, él ya se fue."]], "accept": ["as far as i know"]}, {"id": "cant-wait", "group": "diario", "en": "I can't wait to", "es": "No puedo esperar a… (de emoción)", "formula": "I can't wait to + verbo base", "formulaNote": "No significa que te falte paciencia de verdad: expresas ilusión. Distinto de I can't help it.", "phon": "ai cant WÉIT tu", "silent": "wait suena WÉIT (como «guéit» sin g). La a de can't es corta, como en cat.", "examples": [["I can't wait to see you.", "No puedo esperar a verte."], ["I can't wait to finish this lesson.", "Muero por terminar esta lección."]], "accept": ["i can't wait to", "i cant wait to", "i cannot wait to"]}, {"id": "gonna", "group": "habla", "en": "I'm gonna", "es": "Voy a… (informal)", "formula": "I'm going to → I'm gonna + verbo base", "formulaNote": "Así es como going to suena en el habla rápida. En un correo formal, escribe going to. En clase y con amigos, gonna se oye natural.", "phon": "aim GÓ-nə", "silent": "No se oye la g final de going ni la t de to: queda GÓ-nə.", "examples": [["I'm gonna study tonight.", "Voy a estudiar esta noche."], ["I'm gonna be late.", "Voy a llegar tarde."]], "accept": ["i'm gonna", "im gonna", "i am gonna", "i'm going to", "im going to", "i am going to"]}, {"id": "wanna", "group": "habla", "en": "I wanna", "es": "Quiero… (informal)", "formula": "I want to → I wanna + verbo base", "formulaNote": "Es want to en el habla rápida. En un texto formal, escribe want to.", "phon": "ai WÁ-nə", "silent": "La t de want casi no se oye: WÁ-nə, no «uánt tu».", "examples": [["I wanna learn more expressions.", "Quiero aprender más expresiones."], ["Do you wanna take a break?", "¿Quieres hacer una pausa?"]], "accept": ["i wanna", "i want to"]}, {"id": "gotta", "group": "habla", "en": "I've gotta", "es": "Tengo que… (informal)", "formula": "I have got to → I've gotta + verbo base", "formulaNote": "En el habla también se oye I gotta, sin I've. En un texto formal, usa I have to o I have got to.", "phon": "aiv GÁ-tə", "silent": "got to se junta: GÁ-tə. La v de I've es suave.", "examples": [["I've gotta go.", "Tengo que irme."], ["I've gotta finish this today.", "Tengo que terminar esto hoy."]], "accept": ["i've gotta", "ive gotta", "i gotta", "i've got to", "ive got to", "i have got to", "i have to"]}, {"id": "was-gonna", "group": "habla", "en": "I was gonna", "es": "Iba a… (informal)", "formula": "I was going to → I was gonna + verbo base", "formulaNote": "Cuentas un plan que tenías (y a menudo no ocurrió). En formal: I was going to.", "phon": "ai woz GÓ-nə", "silent": "was suena woz (como «guoz» suave). gonna es GÓ-nə.", "examples": [["I was gonna call you.", "Iba a llamarte."], ["I was gonna say the same thing.", "Iba a decir lo mismo."]], "accept": ["i was gonna", "i was going to"]}];
+window.__EXPR_AUDIO={"I should've known": "1e479b478d03.mp3", "I should've known the meeting would run late.": "ea458fc62622.mp3", "I should've known it was too good to be true.": "6e117bcddaf2.mp3", "I shouldn't have": "389a607a5238.mp3", "I shouldn't have said that in the meeting.": "d914e676a9ee.mp3", "I shouldn't have eaten so much.": "1908d6a7cf4f.mp3", "I could've": "94a24c53264b.mp3", "I could've helped you with that report.": "5a251dcf1b27.mp3", "You could've told me sooner.": "8d7f83433ae8.mp3", "I would've": "5b02b5215c49.mp3", "I would've called, but my phone died.": "9193295b9cef.mp3", "I would've gone if I had known.": "554c3060c474.mp3", "I wouldn't have": "bd8a3cea20a8.mp3", "I wouldn't have done that.": "cc83243ac018.mp3", "I wouldn't have signed it without reading it.": "bddf7dda5651.mp3", "I must've": "87d3f7f29f1a.mp3", "I must've left my keys at the office.": "84cc9084cd2c.mp3", "She must've been tired after class.": "57e490d457da.mp3", "It might've": "fb24e1f3fc1f.mp3", "It might've been a mistake.": "9cfdce79fbb8.mp3", "I might've forgotten to send the email.": "53a344ffcbf9.mp3", "I'm used to": "846f2fb1fb28.mp3", "I'm used to waking up early.": "f1e2010f77a3.mp3", "I'm used to speaking English in class.": "ea3de394bee5.mp3", "I used to": "149fd9570401.mp3", "I used to live in Monterrey.": "0c26a4f38bba.mp3", "I used to study at night.": "f1087c14addf.mp3", "I'd rather": "928a97324dd2.mp3", "I'd rather stay home tonight.": "73435cf67537.mp3", "I'd rather study now than later.": "8df8a6226244.mp3", "I'm about to": "721c9d67451a.mp3", "I'm about to leave.": "7218ba9a91b9.mp3", "I'm about to send the email.": "884e2ccbced0.mp3", "It's up to you": "7b91fc8bee87.mp3", "It's up to you. You decide.": "9ae5d638bc82.mp3", "It's up to the client now.": "183c6a843919.mp3", "I was supposed to": "4e5afe74aaf8.mp3", "I was supposed to call her yesterday.": "5b01c04b0728.mp3", "We were supposed to start at nine.": "2fc10d6edb64.mp3", "I'd better": "7141e8b3c1c1.mp3", "I'd better go, it's getting late.": "8abbe276977a.mp3", "I'd better review this before class.": "a3e005ba649a.mp3", "I can't help it": "47f88db175b9.mp3", "I can't help it, I laugh every time.": "cde9c8ffb387.mp3", "I can't help thinking about the exam.": "ed312ab2c675.mp3", "I'm looking forward to": "07dba519efa2.mp3", "I'm looking forward to the weekend.": "7cd5449387f1.mp3", "I'm looking forward to seeing you.": "e925e86d55c7.mp3", "It turns out": "e1c3aa171ce5.mp3", "It turns out she was right.": "6b787e6d4226.mp3", "It turns out the office is closed today.": "245c92b45da5.mp3", "I ended up": "1f10a56dd5d7.mp3", "I ended up working late.": "bce48bb5d3fb.mp3", "We ended up taking a taxi.": "e32be913a472.mp3", "As far as I know": "1066a1d7241f.mp3", "As far as I know, class starts at eight.": "713ef785ec2b.mp3", "As far as I know, he already left.": "73bb0d07c9d6.mp3", "I can't wait to": "db04300b196a.mp3", "I can't wait to see you.": "941821ac0fd5.mp3", "I can't wait to finish this lesson.": "c977ce9619ad.mp3", "I'm gonna": "0d3a5a4595a3.mp3", "I'm gonna study tonight.": "19293f56fb38.mp3", "I'm gonna be late.": "575f308878e4.mp3", "I wanna": "6d5d1572dd27.mp3", "I wanna learn more expressions.": "76a39a6e54e2.mp3", "Do you wanna take a break?": "60ef4e43ec43.mp3", "I've gotta": "b6e076306957.mp3", "I've gotta go.": "3bc5e215b961.mp3", "I've gotta finish this today.": "3b352cab34a9.mp3", "I was gonna": "c16f1a50586e.mp3", "I was gonna call you.": "783a1361262c.mp3", "I was gonna say the same thing.": "97126aca70a3.mp3"};
+</script>
+<script>
+
+(function(){
+'use strict';
+if(window.parent===window && !/preview=1/.test(location.search)) location.replace('../#expresiones');
+var EK='ql_expr_v1';
+var GROUPS=window.__EXPR_GROUPS;
+var ITEMS=window.__EXPR_ITEMS;
+var AUDIO=window.__EXPR_AUDIO||{};
+var AU=new Audio();AU.preload='auto';
+var st={};try{st=JSON.parse(ls(EK)||'{}')||{}}catch(e){st={}}
+if(!st.heard)st.heard={};
+if(typeof st.slow!=='boolean')st.slow=false;
+if(!st.best)st.best=0;
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function save(){ls(EK,JSON.stringify(st))}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function ic(id){return '<svg class="sk" aria-hidden="true"><use href="#'+id+'"/></svg>'}
+function norm(s){return String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g,' ').trim()}
+function item(id){for(var i=0;i<ITEMS.length;i++)if(ITEMS[i].id===id)return ITEMS[i];return null}
+function stop(){try{AU.pause();AU.removeAttribute('src');AU.load()}catch(e){}try{speechSynthesis.cancel()}catch(e){}document.querySelectorAll('.au.play').forEach(function(b){b.classList.remove('play')})}
+function play(text,btn){
+  stop();
+  var f=AUDIO[text];
+  if(btn)btn.classList.add('play');
+  if(f){
+    try{
+      AU.src='audio/expr/'+f;
+      AU.playbackRate=st.slow?0.7:1;
+      AU.onended=function(){if(btn)btn.classList.remove('play')};
+      AU.onerror=function(){if(btn)btn.classList.remove('play');tts(text,btn)};
+      var p=AU.play();if(p&&p.catch)p.catch(function(){tts(text,btn)});
+      return;
+    }catch(e){}
+  }
+  tts(text,btn);
+}
+function tts(text,btn){
+  if(!window.speechSynthesis){if(btn)btn.classList.remove('play');return}
+  speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=st.slow?0.6:0.92;
+  u.onend=u.onerror=function(){if(btn)btn.classList.remove('play')};
+  speechSynthesis.speak(u);
+}
+function markHeard(id){if(!st.heard[id]){st.heard[id]=Date.now();save();paintProg();var c=document.querySelector('.card[data-id="'+id+'"]');if(c)c.classList.add('heard')}}
+function heardN(){return Object.keys(st.heard).length}
+function paintProg(){
+  var n=heardN();
+  document.getElementById('prog').textContent=n+' / '+ITEMS.length;
+}
+function paintSlow(){
+  var t=document.getElementById('slow');if(t)t.checked=!!st.slow;
+}
+var cat=st.cat||'all';
+var openId=st.open|| (ITEMS[0]&&ITEMS[0].id);
+var mode=st.mode||'explore';
+
+function renderChips(){
+  var el=document.getElementById('chips');
+  var all=[{id:'all',label:'Todas'}].concat(GROUPS);
+  el.innerHTML=all.map(function(g){return '<button type="button" data-g="'+g.id+'" class="'+(g.id===cat?'on':'')+'">'+esc(g.label)+'</button>'}).join('');
+}
+function listItems(){
+  if(cat==='all')return ITEMS;
+  return ITEMS.filter(function(it){return it.group===cat});
+}
+function renderList(){
+  var list=listItems();
+  var el=document.getElementById('list');
+  el.innerHTML=list.map(function(it,i){
+    var open=it.id===openId?' open':'';
+    var heard=st.heard[it.id]?' heard':'';
+    var badge=it.star?'<span class="badge">Del reel</span>':'';
+    var ex=it.examples.map(function(e,j){
+      return '<li><span class="tx"><b>'+esc(e[0])+'</b><small>'+esc(e[1])+'</small></span><button type="button" class="au" data-play="'+esc(e[0])+'" data-id="'+it.id+'" aria-label="Escuchar ejemplo">' +ic('i-volume')+'</button></li>';
+    }).join('');
+    return '<article class="card'+open+heard+'" data-id="'+it.id+'">'+
+      '<div class="hd" data-toggle="'+it.id+'">'+
+        '<span class="tx">'+badge+'<h2>'+esc(it.en)+'</h2><p>'+esc(it.es)+'</p></span>'+
+        ic('i-circle-check').replace('class="sk"','class="sk mark"')+
+        '<button type="button" class="au" data-play="'+esc(it.en)+'" data-id="'+it.id+'" aria-label="Escuchar">' +ic('i-volume')+'</button>'+
+        '<svg class="sk chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+      '</div>'+
+      '<div class="body">'+
+        '<div class="box"><div class="k">Cómo se arma</div><p class="f">'+esc(it.formula)+'</p><p class="n">'+esc(it.formulaNote)+'</p></div>'+
+        '<div class="box sage"><div class="k">Pronunciación</div><p class="phon">'+esc(it.phon)+'</p><p class="s">'+esc(it.silent)+'</p></div>'+
+        '<ul class="ex">'+ex+'</ul>'+
+      '</div></article>';
+  }).join('');
+}
+
+function setMode(m){
+  mode=m;st.mode=m;save();
+  document.body.classList.toggle('mode-quiz', m==='quiz');
+  document.getElementById('dExp').classList.toggle('on', m==='explore');
+  document.getElementById('dQz').classList.toggle('on', m==='quiz');
+  if(m==='quiz' && (!quiz || quiz.done)) startQuiz();
+  else if(m==='quiz') renderQuiz();
+}
+
+/* ---------- quiz ---------- */
+var quiz=null;
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function pickWrong(it, n){
+  var others=ITEMS.filter(function(x){return x.id!==it.id});
+  return shuffle(others).slice(0,n);
+}
+function makeQuestions(){
+  var pool=shuffle(ITEMS);
+  var qs=[], used={};
+  function take(pred){
+    for(var i=0;i<pool.length;i++){
+      if(!used[pool[i].id] && (!pred||pred(pool[i]))){used[pool[i].id]=1;return pool[i]}
+    }
+    for(var j=0;j<pool.length;j++){if(!used[pool[j].id]){used[pool[j].id]=1;return pool[j]}}
+    return pool[0];
+  }
+  // 4 meaning, 3 fill, 3 type — 10 total
+  for(var i=0;i<4;i++){
+    var it=take();
+    var opts=shuffle([it.es].concat(pickWrong(it,3).map(function(x){return x.es})));
+    qs.push({type:'meaning', id:it.id, prompt:it.en, play:it.en, hint:'¿Qué significa?', opts:opts, answer:it.es});
+  }
+  var fills=[
+    {id:'shouldve-known', sen:'I ______ known it was too good to be true.', accept:["should've","should have","shouldve"], play:"I should've known it was too good to be true."},
+    {id:'shouldnt-have', sen:'I ______ eaten so much.', accept:["shouldn't have","should not have","shouldnt have"], play:"I shouldn't have eaten so much."},
+    {id:'couldve', sen:'You ______ told me sooner.', accept:["could've","could have","couldve"], play:"You could've told me sooner."},
+    {id:'wouldve', sen:'I ______ called, but my phone died.', accept:["would've","would have","wouldve"], play:"I would've called, but my phone died."},
+    {id:'mustve', sen:'I ______ left my keys at the office.', accept:["must've","must have","mustve"], play:"I must've left my keys at the office."},
+    {id:'mightve', sen:'It ______ been a mistake.', accept:["might've","might have","mightve"], play:"It might've been a mistake."},
+    {id:'im-used-to', sen:"I'm ______ waking up early.", accept:["used to"], play:"I'm used to waking up early."},
+    {id:'i-used-to', sen:'I ______ live in Monterrey.', accept:["used to"], play:"I used to live in Monterrey."},
+    {id:'im-about-to', sen:"I'm ______ leave.", accept:["about to"], play:"I'm about to leave."},
+    {id:'its-up-to-you', sen:"It's ______ you.", accept:["up to"], play:"It's up to you"},
+    {id:'supposed-to', sen:'I was ______ call her yesterday.', accept:["supposed to"], play:"I was supposed to call her yesterday."},
+    {id:'id-better', sen:"I'd ______ go, it's getting late.", accept:["better"], play:"I'd better go, it's getting late."},
+    {id:'looking-forward', sen:"I'm looking ______ seeing you.", accept:["forward to"], play:"I'm looking forward to seeing you."},
+    {id:'ended-up', sen:'I ______ working late.', accept:["ended up"], play:"I ended up working late."},
+    {id:'gonna', sen:"I'm ______ study tonight.", accept:["gonna","going to"], play:"I'm gonna study tonight."},
+    {id:'wanna', sen:'I ______ learn more expressions.', accept:["wanna","want to"], play:"I wanna learn more expressions."},
+    {id:'gotta', sen:"I've ______ go.", accept:["gotta","got to"], play:"I've gotta go."},
+    {id:'was-gonna', sen:'I was ______ call you.', accept:["gonna","going to"], play:"I was gonna call you."},
+    {id:'cant-wait', sen:"I can't ______ see you.", accept:["wait to"], play:"I can't wait to see you."},
+    {id:'as-far-as', sen:'______ , class starts at eight.', accept:["as far as i know","as far as I know"], play:"As far as I know, class starts at eight."},
+    {id:'turns-out', sen:'______ she was right.', accept:["it turns out"], play:"It turns out she was right."},
+    {id:'id-rather', sen:"I'd ______ stay home tonight.", accept:["rather"], play:"I'd rather stay home tonight."}
+  ];
+  var fillPick=shuffle(fills).slice(0,3);
+  fillPick.forEach(function(f){
+    var it=item(f.id)||{};
+    qs.push({type:'fill', id:f.id, sen:f.sen, accept:f.accept, play:f.play, hint:'Completa la expresión', es:it.es||''});
+  });
+  for(var k=0;k<3;k++){
+    var it2=take();
+    qs.push({type:'type', id:it2.id, prompt:it2.es, play:it2.en, hint:'Escríbela en inglés', accept:it2.accept, answer:it2.en});
+  }
+  return shuffle(qs);
+}
+function okAccept(val, accept){
+  var v=norm(val).replace(/[.,!?]/g,'');
+  return accept.some(function(a){return v===norm(a).replace(/[.,!?]/g,'')});
+}
+function startQuiz(){
+  quiz={qs:makeQuestions(), i:0, ok:0, answered:false, done:false};
+  renderQuiz();
+}
+function renderQuiz(){
+  var el=document.getElementById('qz');
+  if(!quiz){startQuiz();return}
+  if(quiz.done){
+    var n=quiz.qs.length, sc=quiz.ok;
+    if(sc>st.best){st.best=sc;save()}
+    var msg=sc===n?'Las 10, impecable.':sc>=8?'Muy bien, casi todas.':sc>=5?'Buen avance, repasa las que fallaste.':'Escúchalas otra vez y vuelve a intentar.';
+    el.innerHTML='<div class="qcard done">'+ic('i-sparkles')+'<div class="big">'+sc+' / '+n+'</div><h2>Ronda terminada</h2><p>'+esc(msg)+(st.best?(' Tu mejor: '+st.best+'/'+n+'.'):'')+'</p><div class="actions" style="justify-content:center"><button type="button" class="btn" id="again">'+ic('i-refresh')+'<span>Otra ronda</span></button><button type="button" class="btn sec" id="backEx">Volver a las tarjetas</button></div></div>';
+    document.getElementById('again').onclick=function(){startQuiz()};
+    document.getElementById('backEx').onclick=function(){setMode('explore')};
+    return;
+  }
+  var q=quiz.qs[quiz.i], pct=Math.round((quiz.i)/quiz.qs.length*100);
+  var body='';
+  if(q.type==='meaning'){
+    body='<h2>'+esc(q.prompt)+'</h2><p class="hint">'+esc(q.hint)+'</p><div class="opts">'+
+      q.opts.map(function(o,i){return '<button type="button" data-opt="'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div>';
+  } else if(q.type==='fill'){
+    var parts=q.sen.split('______');
+    body='<p class="hint">'+esc(q.hint)+(q.es?(' · '+q.es):'')+'</p><div class="blank"><p class="sen">'+esc(parts[0]||'')+'<em>&nbsp;&nbsp;&nbsp;</em>'+esc(parts[1]||'')+'</p><input id="qin" type="text" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="escribe aquí"></div>';
+  } else {
+    body='<h2>'+esc(q.prompt)+'</h2><p class="hint">'+esc(q.hint)+'</p><div class="blank"><input id="qin" type="text" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="escríbela en inglés"></div>';
+  }
+  el.innerHTML='<div class="qbar"><i style="width:'+pct+'%"></i></div><div class="qcard"><div class="num">Pregunta '+(quiz.i+1)+' de '+quiz.qs.length+'</div>'+body+
+    '<div class="fb" id="qfb"></div><div class="actions"><button type="button" class="au" id="qplay" aria-label="Escuchar">'+ic('i-volume')+'</button>'+
+    (q.type!=='meaning'?'<button type="button" class="btn" id="qcheck">Revisar</button>':'')+
+    '<button type="button" class="btn sec" id="qnext" hidden>Siguiente</button></div></div>';
+  document.getElementById('qplay').onclick=function(){play(q.play,this);if(q.id)markHeard(q.id)};
+  var next=document.getElementById('qnext');
+  function finish(correct, detail){
+    if(quiz.answered)return;quiz.answered=true;
+    if(correct)quiz.ok++;
+    var fb=document.getElementById('qfb');
+    fb.className='fb on '+(correct?'ok':'no');
+    fb.innerHTML=correct?'<b>Así se dice.</b>'+(detail?esc(detail):''):'<b>Casi. La respuesta es:</b> '+esc(detail||'');
+    next.hidden=false;
+    var chk=document.getElementById('qcheck');if(chk)chk.hidden=true;
+    play(q.play, document.getElementById('qplay'));
+    if(q.id)markHeard(q.id);
+  }
+  if(q.type==='meaning'){
+    el.querySelectorAll('[data-opt]').forEach(function(b){
+      b.onclick=function(){
+        if(quiz.answered)return;
+        var good=b.getAttribute('data-opt')===q.answer;
+        el.querySelectorAll('[data-opt]').forEach(function(x){
+          if(x.getAttribute('data-opt')===q.answer)x.classList.add('ok');
+        });
+        if(!good)b.classList.add('no');
+        finish(good, q.answer);
+      };
+    });
+  } else {
+    var inp=document.getElementById('qin');
+    function check(){
+      if(quiz.answered)return;
+      var good=okAccept(inp.value, q.accept);
+      inp.classList.add(good?'ok':'no');
+      inp.disabled=true;
+      finish(good, q.answer || q.accept[0]);
+    }
+    document.getElementById('qcheck').onclick=check;
+    inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();check()}});
+    setTimeout(function(){try{inp.focus()}catch(e){}},200);
+  }
+  next.onclick=function(){
+    quiz.i++;quiz.answered=false;
+    if(quiz.i>=quiz.qs.length)quiz.done=true;
+    renderQuiz();
+    document.getElementById('stage').scrollTop=0;
+  };
+}
+
+document.getElementById('chips').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  cat=b.dataset.g;st.cat=cat;save();renderChips();renderList();
+  document.getElementById('stage').scrollTop=0;
+});
+document.getElementById('list').addEventListener('click',function(e){
+  var playBtn=e.target.closest('[data-play]');
+  if(playBtn){
+    e.preventDefault();e.stopPropagation();
+    play(playBtn.getAttribute('data-play'), playBtn);
+    if(playBtn.dataset.id)markHeard(playBtn.dataset.id);
+    return;
+  }
+  var tog=e.target.closest('[data-toggle]');
+  if(tog){
+    var id=tog.getAttribute('data-toggle');
+    openId=(openId===id)?null:id;st.open=openId;save();
+    document.querySelectorAll('.card').forEach(function(c){c.classList.toggle('open',c.dataset.id===openId)});
+  }
+});
+document.getElementById('slow').onchange=function(){st.slow=this.checked;save();if(!AU.paused)AU.playbackRate=st.slow?0.7:1};
+document.getElementById('dExp').onclick=function(){setMode('explore')};
+document.getElementById('dQz').onclick=function(){setMode('quiz')};
+
+paintSlow();paintProg();renderChips();renderList();
+if(mode==='quiz')setMode('quiz');
+else setMode('explore');
+
+window.__expr={
+  stop:stop,
+  refresh:function(){paintProg();if(mode==='explore')renderList()},
+  count:ITEMS.length
+};
+})();
+
+</script>
+</body></html>
